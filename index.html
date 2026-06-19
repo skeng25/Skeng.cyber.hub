@@ -6,74 +6,41 @@
 <title>Skeng Cyber Hub</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
 body{
+    margin:0;
+    font-family:Arial,sans-serif;
     background:#0A192F;
     color:white;
 }
 
-nav{
+header{
     background:#081424;
-    padding:15px;
+    padding:20px;
     text-align:center;
 }
 
-nav a{
+header h1{
     color:#00FF88;
-    text-decoration:none;
-    margin:0 15px;
-    font-weight:bold;
 }
 
-.hero{
-    text-align:center;
-    padding:100px 20px;
+section{
+    padding:40px 20px;
+    max-width:1000px;
+    margin:auto;
 }
 
-.hero h1{
-    font-size:3rem;
-}
-
-.hero p{
-    margin-top:15px;
-    font-size:1.2rem;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    background:#00FF88;
-    color:black;
-    padding:12px 20px;
-    text-decoration:none;
-    border-radius:5px;
-    font-weight:bold;
-}
-
-.section{
-    padding:50px 20px;
-    text-align:center;
-}
-
-.cards{
+.card-container{
     display:flex;
     flex-wrap:wrap;
-    justify-content:center;
     gap:20px;
-    margin-top:20px;
 }
 
 .card{
     background:#112240;
-    width:250px;
     padding:20px;
     border-radius:10px;
+    flex:1;
+    min-width:250px;
 }
 
 footer{
@@ -81,80 +48,72 @@ footer{
     text-align:center;
     padding:20px;
 }
+
+a{
+    color:#00FF88;
+    text-decoration:none;
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="#">Linux Hub</a>
-    <a href="#">Cybersecurity</a>
-    <a href="#">Projects</a>
-    <a href="#">Contact</a>
-</nav>
-
-<section class="hero">
+<header>
     <h1>🛡️ Skeng Cyber Hub</h1>
     <p>Cybersecurity • Linux • Networking • Ethical Hacking</p>
+</header>
 
-    <a href="#" class="btn">Explore</a>
+<section>
+    <h2>Welcome to Skeng Cyber Hub</h2>
+    <p>
+        Skeng Cyber Hub is a learning platform dedicated to helping
+        students and technology enthusiasts develop practical skills
+        in Cybersecurity, Linux Administration, Networking and IT Support.
+    </p>
 </section>
 
-<section class="section">
+<section>
     <h2>Learning Areas</h2>
 
-    <div class="cards">
-
-        <div class="card">
-            <h3>🐧 Linux</h3>
-            <p>Linux commands, Bash scripting and Kali Linux.</p>
-        </div>
+    <div class="card-container">
 
         <div class="card">
             <h3>🔐 Cybersecurity</h3>
-            <p>Security concepts, threats and defenses.</p>
+            <p>Threat Analysis, Security Fundamentals and Digital Forensics.</p>
+        </div>
+
+        <div class="card">
+            <h3>🐧 Linux</h3>
+            <p>Linux Commands, Bash Scripting and Kali Linux.</p>
         </div>
 
         <div class="card">
             <h3>🌐 Networking</h3>
-            <p>IP addressing, routing and switching.</p>
-        </div>
-
-        <div class="card">
-            <h3>💻 Projects</h3>
-            <p>Labs, scripts and cybersecurity projects.</p>
+            <p>IP Addressing, Routing, Switching and Network Security.</p>
         </div>
 
     </div>
 </section>
 
-<section class="section">
-    <h2>Latest Topics</h2>
+<section>
+    <h2>Projects</h2>
+    <ul>
+        <li>Password Generator</li>
+        <li>Linux Scripts</li>
+        <li>Networking Labs</li>
+        <li>Cybersecurity Practice Labs</li>
+    </ul>
+</section>
 
-    <div class="cards">
-
-        <div class="card">
-            Linux Commands
-        </div>
-
-        <div class="card">
-            Nmap Basics
-        </div>
-
-        <div class="card">
-            Cybersecurity Fundamentals
-        </div>
-
-        <div class="card">
-            Network Security
-        </div>
-
-    </div>
+<section>
+    <h2>Contact</h2>
+    <p>📞 0788211276</p>
+    <p>📧 niskeng492@gmail.com</p>
+    <p>📍 Nairobi, Kenya</p>
 </section>
 
 <footer>
-    © 2026 Skeng Cyber Hub
+    <p>© 2026 Skeng Cyber Hub. All Rights Reserved.</p>
 </footer>
 
 </body>
