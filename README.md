@@ -1,2 +1,163 @@
 # Skeng.cyber.hub
 Helping the new generation and develop skills on cybersecurity,ethicalhaking,e.t.c
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skeng Cyber Hub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0A192F;
+    color:white;
+}
+
+nav{
+    background:#081424;
+    padding:15px;
+    text-align:center;
+}
+
+nav a{
+    color:#00FF88;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+
+.hero{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero h1{
+    font-size:3rem;
+}
+
+.hero p{
+    margin-top:15px;
+    font-size:1.2rem;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#00FF88;
+    color:black;
+    padding:12px 20px;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.section{
+    padding:50px 20px;
+    text-align:center;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    margin-top:20px;
+}
+
+.card{
+    background:#112240;
+    width:250px;
+    padding:20px;
+    border-radius:10px;
+}
+
+footer{
+    background:#081424;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Linux Hub</a>
+    <a href="#">Cybersecurity</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+</nav>
+
+<section class="hero">
+    <h1>🛡️ Skeng Cyber Hub</h1>
+    <p>Cybersecurity • Linux • Networking • Ethical Hacking</p>
+
+    <a href="#" class="btn">Explore</a>
+</section>
+
+<section class="section">
+    <h2>Learning Areas</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>🐧 Linux</h3>
+            <p>Linux commands, Bash scripting and Kali Linux.</p>
+        </div>
+
+        <div class="card">
+            <h3>🔐 Cybersecurity</h3>
+            <p>Security concepts, threats and defenses.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Networking</h3>
+            <p>IP addressing, routing and switching.</p>
+        </div>
+
+        <div class="card">
+            <h3>💻 Projects</h3>
+            <p>Labs, scripts and cybersecurity projects.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Latest Topics</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            Linux Commands
+        </div>
+
+        <div class="card">
+            Nmap Basics
+        </div>
+
+        <div class="card">
+            Cybersecurity Fundamentals
+        </div>
+
+        <div class="card">
+            Network Security
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 Skeng Cyber Hub
+</footer>
+
+</body>
+</html>
