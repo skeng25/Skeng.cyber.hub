@@ -261,6 +261,8 @@
   .foot-links{display:flex; gap:22px; flex-wrap:wrap;}
   .foot-links a{font-size:0.85rem; color:var(--ink-soft);}
   .foot-links a:hover{color:var(--teal);}
+  .foot-links .admin-link{color:var(--amber); cursor:pointer; transition:color .2s;}
+  .foot-links .admin-link:hover{color:#FFC966;}
   .copyright{font-size:0.78rem; color:var(--ink-soft); margin-top:18px; text-align:center;}
 
   /* ---------- MODALS (login + lightbox) ---------- */
@@ -628,49 +630,52 @@
         <a href="#contact">Contact</a>
         <a href="mailto:niskeng492@gmail.com">niskeng492@gmail.com</a>
         <a href="tel:+254788211276">0788 211 276</a>
+        <span class="admin-link" id="footerAdminLink">🔑 Admin</span>
       </div>
     </div>
     <div class="copyright">© 2026 Skeng Cyber Hub, Nairobi. All services performed ethically and within the law.</div>
   </div>
 </footer>
 
-<!-- ============ LOGIN MODAL ============ -->
+<!-- ============ STUDENT LOGIN MODAL ============ -->
 <div class="modal-overlay" id="loginModal">
   <div class="modal-box">
     <button class="modal-close" id="closeLoginModal" aria-label="Close">✕</button>
-    <div class="modal-tabs">
-      <button class="modal-tab active" data-tab="student">Student login</button>
-      <button class="modal-tab" data-tab="admin">Admin login</button>
+    <h3 style="margin-bottom:22px; font-size:1.1rem;">Access the resource library</h3>
+    <div class="pane-switch">
+      <button class="switch-btn active" data-mode="login">Log in</button>
+      <button class="switch-btn" data-mode="signup">Create account</button>
     </div>
+    <form id="studentLoginForm" class="auth-form">
+      <label>Email <input type="email" id="loginEmail" required></label>
+      <label>Password <input type="password" id="loginPassword" required></label>
+      <button class="btn btn-primary" type="submit">Log in</button>
+    </form>
+    <form id="studentSignupForm" class="auth-form" hidden>
+      <label>Full name <input type="text" id="signupName" required></label>
+      <label>Email <input type="email" id="signupEmail" required></label>
+      <label>Password <input type="password" id="signupPassword" required minlength="4"></label>
+      <button class="btn btn-primary" type="submit">Create account</button>
+    </form>
+    <p class="auth-error" id="studentError"></p>
+    <p class="auth-note">Free account — unlocks PDFs, images, and learning materials in the resource library.</p>
+  </div>
+</div>
 
-    <div class="modal-pane active" id="pane-student">
-      <div class="pane-switch">
-        <button class="switch-btn active" data-mode="login">Log in</button>
-        <button class="switch-btn" data-mode="signup">Create account</button>
-      </div>
-      <form id="studentLoginForm" class="auth-form">
-        <label>Email <input type="email" id="loginEmail" required></label>
-        <label>Password <input type="password" id="loginPassword" required></label>
-        <button class="btn btn-primary" type="submit">Log in</button>
-      </form>
-      <form id="studentSignupForm" class="auth-form" hidden>
-        <label>Full name <input type="text" id="signupName" required></label>
-        <label>Email <input type="email" id="signupEmail" required></label>
-        <label>Password <input type="password" id="signupPassword" required minlength="4"></label>
-        <button class="btn btn-primary" type="submit">Create account</button>
-      </form>
-      <p class="auth-error" id="studentError"></p>
-      <p class="auth-note">Free — just unlocks the resource library above.</p>
+<!-- ============ ADMIN LOGIN MODAL (SEPARATE) ============ -->
+<div class="modal-overlay" id="adminLoginModal">
+  <div class="modal-box" style="max-width:380px;">
+    <button class="modal-close" id="closeAdminLoginModal" aria-label="Close">✕</button>
+    <div style="text-align:center; margin-bottom:32px;">
+      <div class="logo" style="justify-content:center; margin-bottom:12px;"><span class="dot"></span>SKENG <span class="slash">//</span> ADMIN</div>
+      <p style="color:var(--ink-soft); font-size:0.85rem;">Management panel — authorized access only.</p>
     </div>
-
-    <div class="modal-pane" id="pane-admin">
-      <form id="adminLoginForm" class="auth-form">
-        <label>Username <input type="text" id="adminUsername" required></label>
-        <label>Password <input type="password" id="adminPassword" required></label>
-        <button class="btn btn-primary" type="submit">Enter admin panel</button>
-      </form>
-      <p class="auth-error" id="adminError"></p>
-    </div>
+    <form id="adminLoginForm" class="auth-form">
+      <label>Username <input type="text" id="adminUsername" required autocomplete="off"></label>
+      <label>Password <input type="password" id="adminPassword" required autocomplete="off"></label>
+      <button class="btn btn-primary" type="submit">Enter panel</button>
+    </form>
+    <p class="auth-error" id="adminError"></p>
   </div>
 </div>
 
@@ -875,7 +880,7 @@
       </div>
     `).join('');
     grid.querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click', ()=>openMaterial(b.dataset.id)));
-    grid.querySelectorAll('button[data-locked]').forEach(b=>b.addEventListener('click', ()=>openLoginModal('student')));
+    grid.querySelectorAll('button[data-locked]').forEach(b=>b.addEventListener('click', openLoginModal));
   }
 
   /* ================= ADMIN: materials manager ================= */
@@ -974,26 +979,40 @@
       slot.innerHTML = `<button class="btn btn-primary small" id="openLoginBtn">Log in</button>`;
     }
     const openLoginBtn = document.getElementById('openLoginBtn');
-    if(openLoginBtn) openLoginBtn.addEventListener('click', ()=>openLoginModal('student'));
+    if(openLoginBtn) openLoginBtn.addEventListener('click', openLoginModal);
     const openAdminBtn = document.getElementById('openAdminBtn');
     if(openAdminBtn) openAdminBtn.addEventListener('click', openAdminPanel);
     const navLogoutBtn = document.getElementById('navLogoutBtn');
     if(navLogoutBtn) navLogoutBtn.addEventListener('click', logout);
   }
 
+  /* Wire up footer admin link */
+  document.getElementById('footerAdminLink').addEventListener('click', openAdminLoginModal);
+
   /* ================= MODAL CONTROLS ================= */
-  function openLoginModal(tab){
+  function openLoginModal(){
     document.getElementById('loginModal').classList.add('open');
-    switchModalTab(tab || 'student');
+    switchLoginMode('login');
   }
   function closeLoginModal(){
     document.getElementById('loginModal').classList.remove('open');
-    showAuthError('studentError',''); showAuthError('adminError','');
+    showAuthError('studentError','');
   }
-  function switchModalTab(tab){
-    document.querySelectorAll('.modal-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
-    document.getElementById('pane-student').classList.toggle('active', tab==='student');
-    document.getElementById('pane-admin').classList.toggle('active', tab==='admin');
+  function switchLoginMode(mode){
+    document.querySelectorAll('.switch-btn').forEach(b=>b.classList.toggle('active', b.dataset.mode===mode));
+    document.getElementById('studentLoginForm').hidden = mode!=='login';
+    document.getElementById('studentSignupForm').hidden = mode!=='signup';
+    showAuthError('studentError','');
+  }
+
+  function openAdminLoginModal(){
+    document.getElementById('adminLoginModal').classList.add('open');
+    document.getElementById('adminUsername').focus();
+  }
+  function closeAdminLoginModal(){
+    document.getElementById('adminLoginModal').classList.remove('open');
+    showAuthError('adminError','');
+    document.getElementById('adminLoginForm').reset();
   }
   function openAdminPanel(){
     document.getElementById('adminPanel').classList.add('open');
@@ -1013,15 +1032,12 @@
   /* ================= EVENT WIRING ================= */
   document.getElementById('closeLoginModal').addEventListener('click', closeLoginModal);
   document.getElementById('loginModal').addEventListener('click', (e)=>{ if(e.target.id==='loginModal') closeLoginModal(); });
-  document.querySelectorAll('.modal-tab').forEach(b=>b.addEventListener('click', ()=>switchModalTab(b.dataset.tab)));
+
+  document.getElementById('closeAdminLoginModal').addEventListener('click', closeAdminLoginModal);
+  document.getElementById('adminLoginModal').addEventListener('click', (e)=>{ if(e.target.id==='adminLoginModal') closeAdminLoginModal(); });
 
   document.querySelectorAll('.switch-btn').forEach(b=>b.addEventListener('click', ()=>{
-    document.querySelectorAll('.switch-btn').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    const mode = b.dataset.mode;
-    document.getElementById('studentLoginForm').hidden = mode!=='login';
-    document.getElementById('studentSignupForm').hidden = mode!=='signup';
-    showAuthError('studentError','');
+    switchLoginMode(b.dataset.mode);
   }));
 
   document.getElementById('studentLoginForm').addEventListener('submit', (e)=>{
