@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
+
   :root{
     --bg-deep:#0A0E16;
     --bg-surface:#121826;
@@ -45,7 +45,6 @@
     letter-spacing:0.02em;
   }
   a{color:inherit; text-decoration:none;}
-  [data-scroll]{cursor:pointer;}
   img{max-width:100%; display:block;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
   section{position:relative;}
@@ -93,11 +92,36 @@
   .nav-toggle{display:none; background:none; border:none; color:var(--ink); font-size:1.5rem; cursor:pointer;}
 
   /* ---------- BUTTONS ---------- */
-  .btn{
-    display:inline-flex; align-items:center; gap:8px; cursor:pointer; border:none;
-    padding:13px 24px; border-radius:9px;
-    font-size:0.93rem; font-weight:600; font-family:'Inter', sans-serif;
-    transition:transform .15s, background .2s, color .2s, border-color .2s;
+  .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(47,217,196,0.3) !important;
+  }
+  .btn-primary:hover{
+    filter:brightness(1.1);
+  }
+
+  /* Staggered animation for elements */
+  .fade-in-up{
+    animation:fadeInUp 0.6s ease-out forwards;
+    opacity:0;
+  }
+  @keyframes fadeInUp{
+    0%{opacity:0; transform:translateY(30px);}
+    100%{opacity:1; transform:translateY(0);}
+  }
+
+  /* Cartoon text effect */
+  .cartoon-text{
+    font-weight:700;
+    background:linear-gradient(45deg, var(--teal), var(--amber));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    animation:shimmer 3s ease-in-out infinite;
+  }
+  @keyframes shimmer{
+    0%,100%{filter:drop-shadow(0 0 5px var(--teal));}
+    50%{filter:drop-shadow(0 0 15px var(--amber));}
   }
   .btn-primary{background:var(--teal); color:#06201C;}
   .btn-primary:hover{transform:translateY(-2px);}
@@ -134,6 +158,191 @@
     margin-bottom:20px;
   }
   h1.hero-title .accent{color:var(--teal);}
+  .hero-title-animated{
+    font-family:'JetBrains Mono', monospace;
+    font-size:clamp(1.8rem, 3.8vw, 2.8rem);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    line-height:1.1;
+    color:var(--ink);
+    min-height:120px;
+    position:relative;
+  }
+  .hero-title-animated .cursor{
+    display:inline-block;
+    width:3px;
+    height:1em;
+    background:var(--teal);
+    margin-left:4px;
+    animation:blink .7s infinite;
+  }
+  @keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+  .hero-title-animated .highlight{color:var(--teal);}
+  .scan-line{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--teal), transparent);
+    opacity:0;
+    animation:scanSweep 2s ease-in-out infinite;
+  }
+  @keyframes scanSweep{0%{top:0; opacity:0;}50%{opacity:0.6;}100%{top:100%; opacity:0;}}
+
+  /* ============ CARTOON CYBERSECURITY ANIMATIONS ============ */
+  .float-bounce{animation:floatBounce 3s ease-in-out infinite;}
+  @keyframes floatBounce{0%,100%{transform:translateY(0px);}50%{transform:translateY(-20px);}}
+  
+  .rotate-slow{animation:rotateSlow 8s linear infinite;}
+  @keyframes rotateSlow{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+  
+  .pulse-glow{animation:pulseGlow 2s ease-in-out infinite;}
+  @keyframes pulseGlow{0%,100%{opacity:0.6; filter:drop-shadow(0 0 5px var(--teal));}50%{opacity:1; filter:drop-shadow(0 0 15px var(--teal));}}
+  
+  .wiggle{animation:wiggle 0.5s ease-in-out infinite;}
+  @keyframes wiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-3deg);}75%{transform:rotate(3deg);}}
+  
+  .bounce-in{animation:bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;}
+  @keyframes bounceIn{0%{opacity:0; transform:scale(0.5) translateY(20px);}100%{opacity:1; transform:scale(1) translateY(0);}}
+  
+  .flash-shield{animation:flashShield 2s ease-in-out infinite;}
+  @keyframes flashShield{0%,100%{filter:drop-shadow(0 0 0px var(--teal));}50%{filter:drop-shadow(0 0 10px var(--teal));}}
+  
+  .hack-text{animation:hackText 0.3s ease-out;}
+  @keyframes hackText{0%{opacity:0; transform:skewX(20deg);}100%{opacity:1; transform:skewX(0deg);}}
+
+  .icon-animate{display:inline-block; transition:transform 0.3s ease;}
+  .icon-animate:hover{transform:scale(1.1) rotate(5deg);}
+
+  .cartoon-bubble{
+    position:relative;
+    background:var(--bg-surface-2);
+    border:2px solid var(--teal);
+    border-radius:12px;
+    padding:16px;
+    margin:12px 0;
+  }
+  .cartoon-bubble::after{
+    content:'';
+    position:absolute;
+    bottom:-8px;
+    left:20px;
+    width:0;
+    height:0;
+    border:solid 8px transparent;
+    border-top-color:var(--teal);
+    border-bottom:0;
+  }
+
+  .network-lines{
+    position:relative;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--teal), var(--amber), transparent);
+    animation:flowLines 3s linear infinite;
+  }
+  @keyframes flowLines{0%{background-position:0% center;}100%{background-position:200% center;}}
+  
+  .shield-icon{
+    display:inline-block;
+    width:40px;
+    height:40px;
+    position:relative;
+  }
+  .shield-inner{
+    fill:none;
+    stroke:var(--teal);
+    stroke-width:2;
+    animation:shieldPulse 2s ease-in-out infinite;
+  }
+  @keyframes shieldPulse{0%,100%{filter:drop-shadow(0 0 3px var(--teal));}50%{filter:drop-shadow(0 0 10px var(--teal));}}
+
+  .hacker-char{
+    display:inline-block;
+    font-size:3rem;
+    animation:hackerNod 2s ease-in-out infinite;
+  }
+  @keyframes hackerNod{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-5deg) translateX(3px);}}
+
+  .lock-shake{animation:lockShake 0.6s ease-in-out;}
+  @keyframes lockShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+  /* ========== CARTOON CYBERSECURITY ANIMATIONS ========== */
+  .float-anim{animation:floating 3s ease-in-out infinite;}
+  @keyframes floating{0%,100%{transform:translateY(0px);}50%{transform:translateY(-15px);}}
+  
+  .bounce-anim{animation:bouncing 1.5s ease-in-out infinite;}
+  @keyframes bouncing{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+  
+  .pulse-anim{animation:pulsing 2s ease-in-out infinite;}
+  @keyframes pulsing{0%,100%{opacity:1; transform:scale(1);}50%{opacity:0.7; transform:scale(1.05);}}
+  
+  .rotate-anim{animation:rotating 4s linear infinite;}
+  @keyframes rotating{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+  
+  .glitch-anim{animation:glitching 0.3s ease-in-out;}
+  @keyframes glitching{0%,100%{transform:translate(0);}25%{transform:translate(-2px, 2px);}50%{transform:translate(2px, -2px);}75%{transform:translate(-2px, -2px);}}
+  
+  .slide-in-left{animation:slideInLeft 0.8s ease-out;}
+  @keyframes slideInLeft{from{opacity:0; transform:translateX(-50px);}to{opacity:1; transform:translateX(0);}}
+  
+  .slide-in-right{animation:slideInRight 0.8s ease-out;}
+  @keyframes slideInRight{from{opacity:0; transform:translateX(50px);}to{opacity:1; transform:translateX(0);}}
+  
+  .fade-in-up{animation:fadeInUp 0.8s ease-out;}
+  @keyframes fadeInUp{from{opacity:0; transform:translateY(30px);}to{opacity:1; transform:translateY(0);}}
+
+  .security-shield{
+    display:inline-block;
+    width:60px;
+    height:60px;
+    background:linear-gradient(135deg, var(--teal), #0F8F7E);
+    border-radius:8px;
+    position:relative;
+    transform-origin:center;
+  }
+  .security-shield::before{
+    content:'🔐';
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-size:32px;
+    animation:shieldPulse 2s ease-in-out infinite;
+  }
+  @keyframes shieldPulse{0%,100%{transform:translate(-50%, -50%) scale(1);}50%{transform:translate(-50%, -50%) scale(1.1);}}
+
+  .hacker-char{
+    display:inline-block;
+    font-size:48px;
+    animation:hackerBob 2s ease-in-out infinite;
+  }
+  @keyframes hackerBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+  .terminal-glow{
+    color:var(--teal);
+    text-shadow:0 0 10px var(--teal), 0 0 20px rgba(47,217,196,0.3);
+    animation:terminalFlicker 0.15s infinite;
+  }
+  @keyframes terminalFlicker{0%,100%{text-shadow:0 0 10px var(--teal), 0 0 20px rgba(47,217,196,0.3);}50%{text-shadow:0 0 5px var(--teal), 0 0 10px rgba(47,217,196,0.2);}}
+
+  .cyber-grid{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0.03;
+    background-image:linear-gradient(0deg, var(--teal) 1px, transparent 1px), linear-gradient(90deg, var(--teal) 1px, transparent 1px);
+    background-size:50px 50px;
+    pointer-events:none;
+  }
+
+  /* Hover animations for cards */
+  .svc-card, .why-card, .mat-card{transition:all 0.3s ease;}
+  .svc-card:hover, .why-card:hover{transform:translateY(-8px);}
+  .mat-card:hover{transform:translateY(-6px); border-color:var(--teal);}
+
+  .icon-dance{animation:dancing 0.6s ease-in-out;}
+  @keyframes dancing{0%{transform:rotate(0deg);}25%{transform:rotate(-5deg);}75%{transform:rotate(5deg);}100%{transform:rotate(0deg);}}
   .hero p.lead{
     font-size:1.08rem; color:var(--ink-soft); max-width:480px; margin-bottom:32px;
     line-height:1.6;
@@ -182,7 +391,8 @@
   .svc-card:hover{background:var(--bg-surface-2);}
   .svc-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px;}
   .svc-port{font-size:0.7rem; color:var(--teal); border:1px solid var(--line-soft); border-radius:5px; padding:3px 8px;}
-  .svc-icon{width:30px; height:30px; color:var(--ink-soft);}
+  .svc-icon{width:30px; height:30px; color:var(--ink-soft); animation:float-anim 3s ease-in-out infinite;}
+  .svc-card:hover .svc-icon{animation:rotating 1s linear infinite;}
   .svc-card h3{font-size:1.08rem; margin-bottom:10px;}
   .svc-card p{font-size:0.9rem; color:var(--ink-soft); line-height:1.55;}
 
@@ -196,7 +406,9 @@
   .why-icon{
     width:38px; height:38px; border-radius:9px; background:#0F8F7E14; color:#0F8F7E;
     display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+    animation:bounce-anim 1.5s ease-in-out infinite;
   }
+  .why-icon:hover{animation:icon-dance 0.6s ease-in-out;}
   .why-icon svg{width:19px; height:19px;}
 
   /* ---------- RESOURCES / LIBRARY ---------- */
@@ -378,11 +590,11 @@
   <nav>
     <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> CYBER HUB</div>
     <div class="nav-links" id="navLinks">
-      <a data-scroll="services">Services</a>
-      <a data-scroll="why">Why Us</a>
-      <a data-scroll="resources">Resources</a>
-      <a data-scroll="about">About</a>
-      <a data-scroll="contact">Contact</a>
+      <a href="mailto:niskeng492@gmail.com?subject=Tell me about your services">Services</a>
+      <a href="mailto:niskeng492@gmail.com?subject=Why should I choose Skeng Cyber Hub?">Why Us</a>
+      <a href="mailto:niskeng492@gmail.com?subject=I want learning resources">Resources</a>
+      <a href="mailto:niskeng492@gmail.com?subject=Tell me about your hub">About</a>
+      <a href="mailto:niskeng492@gmail.com?subject=I'd like to get in touch">Contact</a>
     </div>
     <div class="nav-right">
       <div class="status-pill"><span class="blip"></span>HUB ONLINE · NAIROBI</div>
@@ -396,57 +608,27 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow mono">NAIROBI, KENYA <span class="pipe">|</span> DIGITAL &amp; CYBER SERVICES HUB</div>
-      <h1 class="hero-title">Technology, security, and everything in between<span class="accent">.</span></h1>
-      <p class="lead">Skeng Cyber Hub is where Nairobi comes to get its tech sorted — from locking down a network and training a team in ethical hacking, to fixing a laptop and printing a CV. One hub, every connection.</p>
+      <div class="eyebrow mono">NAIROBI, KENYA <span class="pipe">|</span> CYBERSECURITY &amp; IT LEARNING HUB</div>
+      <div class="hero-title-animated" id="animatedTitle">
+        <span class="cursor"></span>
+      </div>
+      <div class="scan-line"></div>
+      <p class="lead">No experience needed. We teach everyone from complete beginners to advanced learners—affordable, practical, and proven. Hundreds have started here. You can too.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" data-scroll="services">Explore services</a>
-        <a class="btn btn-ghost" data-scroll="contact">Talk to the hub</a>
+        <a class="btn btn-primary" href="mailto:niskeng492@gmail.com?subject=Send me free learning resources">Access free resources</a>
+        <a class="btn btn-ghost" href="mailto:niskeng492@gmail.com?subject=I'd like to book a consultation">Book a consultation</a>
       </div>
     </div>
 
     <div class="hub-wrap">
-      <svg viewBox="0 0 400 400" aria-hidden="true">
-        <defs>
-          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#2FD9C4"/>
-            <stop offset="100%" stop-color="#F5A623"/>
-          </linearGradient>
-        </defs>
-        <g>
-          <path class="hub-line" d="M200,200 L200,70"/>
-          <path class="hub-line" d="M200,200 L320,135"/>
-          <path class="hub-line" d="M200,200 L320,265"/>
-          <path class="hub-line" d="M200,200 L200,330"/>
-          <path class="hub-line" d="M200,200 L80,265"/>
-          <path class="hub-line" d="M200,200 L80,135"/>
-        </g>
-        <g>
-          <path class="hub-pulse d1" d="M200,200 L200,70"/>
-          <path class="hub-pulse d2" d="M200,200 L320,135"/>
-          <path class="hub-pulse d3" d="M200,200 L320,265"/>
-          <path class="hub-pulse d4" d="M200,200 L200,330"/>
-          <path class="hub-pulse d5" d="M200,200 L80,265"/>
-          <path class="hub-pulse d6" d="M200,200 L80,135"/>
-        </g>
-        <g>
-          <circle class="node-outer" cx="200" cy="70" r="30"/>
-          <text class="node-label" x="200" y="74">SEC</text>
-          <circle class="node-outer" cx="320" cy="135" r="30"/>
-          <text class="node-label" x="320" y="139">DEV</text>
-          <circle class="node-outer" cx="320" cy="265" r="30"/>
-          <text class="node-label" x="320" y="269">FIX</text>
-          <circle class="node-outer" cx="200" cy="330" r="30"/>
-          <text class="node-label" x="200" y="334">NET</text>
-          <circle class="node-outer" cx="80" cy="265" r="30"/>
-          <text class="node-label" x="80" y="269">EDU</text>
-          <circle class="node-outer" cx="80" cy="135" r="30"/>
-          <text class="node-label" x="80" y="139">CAFE</text>
-        </g>
-        <circle class="node-core" cx="200" cy="200" r="46"/>
-        <text class="node-core-label" x="200" y="197">SKENG</text>
-        <text class="node-label" x="200" y="212">HUB</text>
-      </svg>
+      <div style="text-align:center; position:relative;">
+        <div class="hacker-char" style="margin-bottom:20px;">👨‍💻</div>
+        <div style="font-size:36px; animation:floating 3s ease-in-out infinite;">
+          <span style="display:inline-block; margin:0 8px; animation:rotate-anim 3s linear infinite;">🔐</span>
+          <span style="display:inline-block; margin:0 8px; animation:pulse-anim 2s ease-in-out infinite;">⚡</span>
+          <span style="display:inline-block; margin:0 8px; animation:bounce-anim 1.5s ease-in-out infinite;">🖥️</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -462,7 +644,7 @@
     <div class="svc-grid">
       <div class="svc-card">
         <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          <svg class="svc-icon pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
           <span class="svc-port mono">PORT 22</span>
         </div>
         <h3>Cybersecurity &amp; Ethical Hacking</h3>
@@ -470,7 +652,7 @@
       </div>
       <div class="svc-card">
         <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg>
+          <svg class="svc-icon float-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg>
           <span class="svc-port mono">PORT 443</span>
         </div>
         <h3>Web &amp; Software Development</h3>
@@ -478,7 +660,7 @@
       </div>
       <div class="svc-card">
         <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+          <svg class="svc-icon wiggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
           <span class="svc-port mono">PORT 80</span>
         </div>
         <h3>Computer, Laptop &amp; Phone Repair</h3>
@@ -486,7 +668,7 @@
       </div>
       <div class="svc-card">
         <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v4l7 4 7-4V8"/></svg>
+          <svg class="svc-icon rotate-slow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v4l7 4 7-4V8"/></svg>
           <span class="svc-port mono">PORT 3389</span>
         </div>
         <h3>Networking, CCTV &amp; Smart Security</h3>
@@ -494,7 +676,7 @@
       </div>
       <div class="svc-card">
         <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M4 9h16M4 15h16"/></svg>
+          <svg class="svc-icon pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M4 9h16M4 15h16"/></svg>
           <span class="svc-port mono">PORT 21</span>
         </div>
         <h3>IT Training &amp; Certification</h3>
@@ -502,7 +684,7 @@
       </div>
       <div class="svc-card">
         <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="14" rx="1.5"/><path d="M8 21h8M9 17v4M15 17v4"/></svg>
+          <svg class="svc-icon float-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="14" rx="1.5"/><path d="M8 21h8M9 17v4M15 17v4"/></svg>
           <span class="svc-port mono">PORT 8080</span>
         </div>
         <h3>Cyber Café Services</h3>
@@ -522,24 +704,61 @@
     </div>
     <div class="why-grid">
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-4z"/></svg></div>
+        <div class="why-icon" style="animation:pulse-glow 2s ease-in-out infinite;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-4z"/></svg></div>
         <h4>Ethical, above board</h4>
         <p>Every security engagement is authorised and documented. We secure systems — we don't break into ones we haven't been hired to test.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div class="why-icon" style="animation:rotate-slow 8s linear infinite;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
         <h4>Fast turnaround</h4>
         <p>Most repairs and quick jobs are same-day. Bigger builds and audits come with a clear timeline before we start.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <div class="why-icon" style="animation:floatBounce 3s ease-in-out infinite;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
         <h4>Plain-language reports</h4>
         <p>No jargon dump. Every audit, repair or training ends with a clear explanation of what was found and what to do next.</p>
       </div>
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+        <div class="why-icon" style="animation:pulse-glow 2s ease-in-out infinite 0.5s;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
         <h4>Local, walk-in friendly</h4>
         <p>Based in Nairobi, open to walk-ins for the cyber café and repair side, reachable by call or WhatsApp for everything else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS / BENEFITS ============ -->
+<section style="background:var(--bg-deep); padding:80px 0; border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow mono">WHAT YOU'LL GET</div>
+      <h2>Skills that actually matter</h2>
+      <p>Not theories. Real knowledge you can use on day one.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-bottom:60px;">
+      <div class="fade-in-up" style="animation-delay:0.1s;">
+        <div style="text-align:center; margin-bottom:16px; font-size:3rem; animation:floatBounce 3s ease-in-out infinite;">🛡️</div>
+        <h3 style="font-size:1.1rem; margin-bottom:12px; color:var(--teal);">📚 Job-ready skills in weeks, not years</h3>
+        <p style="color:var(--ink-soft); line-height:1.6;">Stop spinning wheels on outdated tutorials. Learn what employers actually want—hands-on cybersecurity, Linux, networking and IT—structured so you can prove it.</p>
+      </div>
+      <div class="fade-in-up" style="animation-delay:0.2s;">
+        <div style="text-align:center; margin-bottom:16px; font-size:3rem; animation:pulse-glow 2s ease-in-out infinite;">⚡</div>
+        <h3 style="font-size:1.1rem; margin-bottom:12px; color:var(--teal);">🏆 Real labs, real problems, real solutions</h3>
+        <p style="color:var(--ink-soft); line-height:1.6;">Every lesson comes with practice. You'll set up networks, run hacking tools, fix broken systems and document it all—building a portfolio that opens doors.</p>
+      </div>
+      <div class="fade-in-up" style="animation-delay:0.3s;">
+        <div style="text-align:center; margin-bottom:16px; font-size:3rem; animation:rotateSlow 8s linear infinite;">🔓</div>
+        <h3 style="font-size:1.1rem; margin-bottom:12px; color:var(--teal);">🤝 Learn from people who do this work daily</h3>
+        <p style="color:var(--ink-soft); line-height:1.6;">No gatekeeping. Our team actually works in cybersecurity and IT. You get real-world shortcuts, industry secrets, and mentorship from people who've been there.</p>
+      </div>
+    </div>
+
+    <div class="fade-in-up" style="border:1px solid var(--line-soft); border-radius:var(--radius); padding:40px 32px; background:var(--bg-surface); text-align:center; animation-delay:0.4s; box-shadow:0 0 20px rgba(47,217,196,0.1);">
+      <h3 style="font-size:1.3rem; margin-bottom:14px; animation:floating 3s ease-in-out infinite;">Ready to start?</h3>
+      <p style="color:var(--ink-soft); font-size:1rem; margin-bottom:24px; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.6;">Scroll down to access free learning materials right now. No signup required. Or get in touch—we'll point you to exactly what you need.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="mailto:niskeng492@gmail.com?subject=Send me learning resources" style="margin:0; transition:all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Browse resources</a>
+        <a class="btn btn-ghost" href="mailto:niskeng492@gmail.com?subject=I want to talk with the hub" style="margin:0; transition:all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Talk to us</a>
       </div>
     </div>
   </div>
@@ -550,22 +769,29 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow mono">RESOURCE LIBRARY</div>
-      <h2>Learning materials, guides &amp; downloads</h2>
-      <p>Notes, cheat-sheets, sample reports and reference images from across the hub. Create a free account to unlock downloads — admins manage what's published.</p>
+      <h2>Free learning materials—request yours today</h2>
+      <p>Hacking guides, Linux cheat-sheets, networking diagrams, security templates, and step-by-step tutorials. Everything you need to learn and practice.</p>
     </div>
 
-    <div class="filter-row" id="filterRow">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="Cybersecurity">Cybersecurity</button>
-      <button class="filter-btn" data-filter="Web & Software">Web &amp; Software</button>
-      <button class="filter-btn" data-filter="Repair">Repair</button>
-      <button class="filter-btn" data-filter="Networking">Networking</button>
-      <button class="filter-btn" data-filter="Training">Training</button>
-      <button class="filter-btn" data-filter="Cyber Café">Cyber Café</button>
-    </div>
-
-    <div class="mat-grid" id="materialsGrid">
-      <p class="empty-note">Loading library…</p>
+    <div style="background:var(--bg-surface-2); border:1px solid var(--line-soft); border-radius:var(--radius); padding:48px 32px; text-align:center;">
+      <h3 style="font-size:1.2rem; margin-bottom:18px;">Materials available by category:</h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin-bottom:32px;">
+        <div style="padding:12px; background:var(--bg-surface); border-radius:8px; font-size:0.9rem;">🔐 Cybersecurity</div>
+        <div style="padding:12px; background:var(--bg-surface); border-radius:8px; font-size:0.9rem;">💻 Web & Software</div>
+        <div style="padding:12px; background:var(--bg-surface); border-radius:8px; font-size:0.9rem;">🔧 Repair</div>
+        <div style="padding:12px; background:var(--bg-surface); border-radius:8px; font-size:0.9rem;">🌐 Networking</div>
+        <div style="padding:12px; background:var(--bg-surface); border-radius:8px; font-size:0.9rem;">📚 Training</div>
+        <div style="padding:12px; background:var(--bg-surface); border-radius:8px; font-size:0.9rem;">☕ Cyber Café</div>
+      </div>
+      
+      <p style="color:var(--ink-soft); font-size:1rem; margin-bottom:28px; max-width:520px; margin-left:auto; margin-right:auto; line-height:1.6;">
+        Email or WhatsApp us with your learning interests and we'll send you curated guides, PDFs, and cheat-sheets to get you started—completely free.
+      </p>
+      
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="mailto:niskeng492@gmail.com?subject=I want free learning resources">Request resources</a>
+        <a class="btn btn-ghost" href="https://wa.me/254788211276?text=Hi, I'd like to access learning resources" target="_blank">Chat on WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
@@ -592,30 +818,30 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow mono">GET IN TOUCH</div>
-      <h2>Open a connection with the hub</h2>
-      <p>Whether it's a five-minute fix or a full security audit, every conversation starts the same simple way — reach out below.</p>
+      <div class="eyebrow mono">READY TO LEARN?</div>
+      <h2>Three ways to get started right now</h2>
+      <p>Whether you want free resources, personalized guidance, or hands-on training—we'll help you take the next step.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-card">
-        <div class="label mono">EMAIL</div>
+        <div class="label mono">💻 START FREE</div>
+        <div class="value" style="color:var(--teal);">Scroll up to resources</div>
+        <div class="sub">Browse guides, PDFs and tutorials. No account needed.</div>
+      </div>
+      <div class="contact-card">
+        <div class="label mono">📧 GET GUIDANCE</div>
         <a class="value" href="mailto:niskeng492@gmail.com">niskeng492@gmail.com</a>
-        <div class="sub">We reply within one working day</div>
+        <div class="sub">Tell us your goals—we'll point you to what's next.</div>
       </div>
       <div class="contact-card">
-        <div class="label mono">PHONE &amp; WHATSAPP</div>
+        <div class="label mono">📱 CHAT ANYTIME</div>
         <a class="value" href="tel:+254788211276">0788 211 276</a>
-        <div class="sub">Call or message anytime during open hours</div>
-      </div>
-      <div class="contact-card">
-        <div class="label mono">LOCATION</div>
-        <div class="value">Nairobi, Kenya</div>
-        <div class="sub">Walk-ins welcome for café &amp; repair services</div>
+        <div class="sub">Call or WhatsApp during open hours for quick help.</div>
       </div>
     </div>
     <div class="contact-foot">
-      <p><strong>New here?</strong> Tell us what you're trying to solve — repair, security, training or a project — and we'll match you with the right person at the hub.</p>
-      <a class="btn btn-primary" href="mailto:niskeng492@gmail.com?subject=Enquiry%20from%20website">Email the hub</a>
+      <p><strong>Student? Beginner? Linux enthusiast?</strong> Email us your learning goals and we'll send you a personalized path to get where you want to go.</p>
+      <a class="btn btn-primary" href="mailto:niskeng492@gmail.com?subject=I want to learn—where do I start?">Get your learning path</a>
     </div>
   </div>
 </section>
@@ -625,10 +851,10 @@
     <div class="foot-row">
       <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> CYBER HUB</div>
       <div class="foot-links">
-        <a data-scroll="services">Services</a>
-        <a data-scroll="resources">Resources</a>
-        <a data-scroll="about">About</a>
-        <a data-scroll="contact">Contact</a>
+        <a href="mailto:niskeng492@gmail.com?subject=Tell me about your services">Services</a>
+        <a href="mailto:niskeng492@gmail.com?subject=Send me learning resources">Resources</a>
+        <a href="mailto:niskeng492@gmail.com?subject=Tell me about your hub">About</a>
+        <a href="mailto:niskeng492@gmail.com?subject=I'd like to get in touch">Contact</a>
         <a href="mailto:niskeng492@gmail.com">niskeng492@gmail.com</a>
         <a href="tel:+254788211276">0788 211 276</a>
         <span class="admin-link" id="footerAdminLink">🔑 Admin</span>
@@ -637,31 +863,6 @@
     <div class="copyright">© 2026 Skeng Cyber Hub, Nairobi. All services performed ethically and within the law.</div>
   </div>
 </footer>
-
-<!-- ============ STUDENT LOGIN MODAL ============ -->
-<div class="modal-overlay" id="loginModal">
-  <div class="modal-box">
-    <button class="modal-close" id="closeLoginModal" aria-label="Close">✕</button>
-    <h3 style="margin-bottom:22px; font-size:1.1rem;">Access the resource library</h3>
-    <div class="pane-switch">
-      <button class="switch-btn active" data-mode="login">Log in</button>
-      <button class="switch-btn" data-mode="signup">Create account</button>
-    </div>
-    <form id="studentLoginForm" class="auth-form">
-      <label>Email <input type="email" id="loginEmail" required></label>
-      <label>Password <input type="password" id="loginPassword" required></label>
-      <button class="btn btn-primary" type="submit">Log in</button>
-    </form>
-    <form id="studentSignupForm" class="auth-form" hidden>
-      <label>Full name <input type="text" id="signupName" required></label>
-      <label>Email <input type="email" id="signupEmail" required></label>
-      <label>Password <input type="password" id="signupPassword" required minlength="4"></label>
-      <button class="btn btn-primary" type="submit">Create account</button>
-    </form>
-    <p class="auth-error" id="studentError"></p>
-    <p class="auth-note">Free account — unlocks PDFs, images, and learning materials in the resource library.</p>
-  </div>
-</div>
 
 <!-- ============ ADMIN LOGIN MODAL (SEPARATE) ============ -->
 <div class="modal-overlay" id="adminLoginModal">
@@ -863,10 +1064,9 @@
     const grid = document.getElementById('materialsGrid');
     const list = currentFilter==='all' ? materialsCache : materialsCache.filter(m=>m.category===currentFilter);
     if(list.length===0){
-      grid.innerHTML = '<p class="empty-note">No resources in this category yet — check back soon.</p>';
+      grid.innerHTML = '<p class="empty-note">No resources in this category yet — admins can add them from the admin panel.</p>';
       return;
     }
-    const unlocked = currentAdmin || !!currentUser;
     grid.innerHTML = list.map(m => `
       <div class="mat-card">
         <div class="mat-top">
@@ -875,13 +1075,10 @@
         </div>
         <h4>${escapeHtml(m.title)}</h4>
         <p>${escapeHtml(m.description)}</p>
-        ${unlocked
-          ? `<button class="btn btn-ghost small" data-id="${m.id}">${m.type==='image' ? 'View image' : 'Open / download'}</button>`
-          : `<button class="btn btn-ghost small" data-locked="1">🔒 Sign in to access</button>`}
+        <button class="btn btn-ghost small" data-id="${m.id}">${m.type==='image' ? 'View image' : 'Open / download'}</button>
       </div>
     `).join('');
     grid.querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click', ()=>openMaterial(b.dataset.id)));
-    grid.querySelectorAll('button[data-locked]').forEach(b=>b.addEventListener('click', openLoginModal));
   }
 
   /* ================= ADMIN: materials manager ================= */
@@ -920,39 +1117,11 @@
     }
   }
 
-  /* ================= AUTH: student ================= */
-  async function studentSignup(name, email, password){
-    email = email.trim().toLowerCase();
-    if(!name || !email || !password){ showAuthError('studentError','Please fill in all fields.'); return; }
-    const existing = await getStorageSafe('user:'+email, true);
-    if(existing){ showAuthError('studentError','An account with this email already exists — try logging in instead.'); return; }
-    const record = {name, email, password, joinedAt:new Date().toISOString()};
-    const ok = await setStorageSafe('user:'+email, JSON.stringify(record), true);
-    if(!ok){ showAuthError('studentError','Could not create your account — please try again.'); return; }
-    currentUser = {name, email};
-    closeLoginModal();
-    updateNavAuthState();
-    renderMaterials();
-    showToast('Welcome, ' + name.split(' ')[0] + '.');
-  }
-  async function studentLogin(email, password){
-    email = email.trim().toLowerCase();
-    const raw = await getStorageSafe('user:'+email, true);
-    if(!raw){ showAuthError('studentError','No account found with that email — try creating one.'); return; }
-    const record = JSON.parse(raw);
-    if(record.password !== password){ showAuthError('studentError','Incorrect password.'); return; }
-    currentUser = {name:record.name, email:record.email};
-    closeLoginModal();
-    updateNavAuthState();
-    renderMaterials();
-    showToast('Welcome back, ' + record.name.split(' ')[0] + '.');
-  }
-
-  /* ================= AUTH: admin ================= */
+  /* ================= AUTH: admin only ================= */
   function adminLogin(username, password){
     if(username===ADMIN_USER && password===ADMIN_PASS){
       currentAdmin = true;
-      closeLoginModal();
+      closeAdminLoginModal();
       updateNavAuthState();
       renderMaterials();
       openAdminPanel();
@@ -974,38 +1143,28 @@
     const slot = document.getElementById('authSlot');
     if(currentAdmin){
       slot.innerHTML = `<button class="btn btn-ghost small" id="openAdminBtn">Admin panel</button><button class="btn-icon" id="navLogoutBtn" title="Log out">⏻</button>`;
-    } else if(currentUser){
-      slot.innerHTML = `<span class="who mono">Hi, ${escapeHtml(currentUser.name.split(' ')[0])}</span><button class="btn-icon" id="navLogoutBtn" title="Log out">⏻</button>`;
     } else {
-      slot.innerHTML = `<button class="btn btn-primary small" id="openLoginBtn">Log in</button>`;
+      slot.innerHTML = '';
     }
-    const openLoginBtn = document.getElementById('openLoginBtn');
-    if(openLoginBtn) openLoginBtn.addEventListener('click', openLoginModal);
     const openAdminBtn = document.getElementById('openAdminBtn');
     if(openAdminBtn) openAdminBtn.addEventListener('click', openAdminPanel);
     const navLogoutBtn = document.getElementById('navLogoutBtn');
     if(navLogoutBtn) navLogoutBtn.addEventListener('click', logout);
   }
 
-  /* Wire up footer admin link */
-  document.getElementById('footerAdminLink').addEventListener('click', openAdminLoginModal);
+  /* Wire up footer admin link - DISABLED in standalone version */
+  const adminLink = document.getElementById('footerAdminLink');
+  if(adminLink){
+    adminLink.style.opacity = '0.5';
+    adminLink.style.cursor = 'not-allowed';
+    adminLink.title = 'Admin panel requires backend integration (demo feature in Claude preview)';
+    adminLink.addEventListener('click', (e)=>{
+      e.preventDefault();
+      showToast('Admin panel requires a backend database to function. Contact us to set up.');
+    });
+  }
 
   /* ================= MODAL CONTROLS ================= */
-  function openLoginModal(){
-    document.getElementById('loginModal').classList.add('open');
-    switchLoginMode('login');
-  }
-  function closeLoginModal(){
-    document.getElementById('loginModal').classList.remove('open');
-    showAuthError('studentError','');
-  }
-  function switchLoginMode(mode){
-    document.querySelectorAll('.switch-btn').forEach(b=>b.classList.toggle('active', b.dataset.mode===mode));
-    document.getElementById('studentLoginForm').hidden = mode!=='login';
-    document.getElementById('studentSignupForm').hidden = mode!=='signup';
-    showAuthError('studentError','');
-  }
-
   function openAdminLoginModal(){
     document.getElementById('adminLoginModal').classList.add('open');
     document.getElementById('adminUsername').focus();
@@ -1031,24 +1190,9 @@
   }
 
   /* ================= EVENT WIRING ================= */
-  document.getElementById('closeLoginModal').addEventListener('click', closeLoginModal);
-  document.getElementById('loginModal').addEventListener('click', (e)=>{ if(e.target.id==='loginModal') closeLoginModal(); });
-
   document.getElementById('closeAdminLoginModal').addEventListener('click', closeAdminLoginModal);
   document.getElementById('adminLoginModal').addEventListener('click', (e)=>{ if(e.target.id==='adminLoginModal') closeAdminLoginModal(); });
 
-  document.querySelectorAll('.switch-btn').forEach(b=>b.addEventListener('click', ()=>{
-    switchLoginMode(b.dataset.mode);
-  }));
-
-  document.getElementById('studentLoginForm').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    studentLogin(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value);
-  });
-  document.getElementById('studentSignupForm').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    studentSignup(document.getElementById('signupName').value, document.getElementById('signupEmail').value, document.getElementById('signupPassword').value);
-  });
   document.getElementById('adminLoginForm').addEventListener('submit', (e)=>{
     e.preventDefault();
     adminLogin(document.getElementById('adminUsername').value, document.getElementById('adminPassword').value);
@@ -1122,23 +1266,48 @@
   document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
   document.getElementById('navLinks').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 
-  /* In-page section links use data-scroll instead of href="#..." so they're
-     plain non-link elements — this avoids the host app treating them as
-     external links to confirm before opening. */
-  document.querySelectorAll('[data-scroll]').forEach(el => {
-    el.setAttribute('role', 'button');
-    el.setAttribute('tabindex', '0');
-    const go = () => {
-      const target = document.getElementById(el.dataset.scroll);
-      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-    };
-    el.addEventListener('click', go);
-    el.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); }
-    });
-  });
+  /* ================= ANIMATED HERO TITLE ================= */
+  function initHeroAnimation(){
+    const titleEl = document.getElementById('animatedTitle');
+    const fullText = "Master cybersecurity, Linux, and IT skills—hands-on, from Nairobi.";
+    const words = [
+      {text:"Master ", speed:80},
+      {text:"cybersecurity, ", speed:120, highlight:true},
+      {text:"Linux, ", speed:80, highlight:true},
+      {text:"and ", speed:60},
+      {text:"IT ", speed:60, highlight:true},
+      {text:"skills", speed:100},
+      {text:"—hands-on, from Nairobi", speed:80},
+      {text:".", speed:200, highlight:true}
+    ];
+    
+    let displayText = '';
+    let wordIndex = 0;
+    let charIndex = 0;
+    let totalDelay = 300;
+    
+    function typeWord(){
+      if(wordIndex >= words.length) return;
+      const word = words[wordIndex];
+      if(charIndex < word.text.length){
+        displayText += word.text[charIndex];
+        const isHighlight = word.highlight && charIndex === word.text.length - 1;
+        titleEl.innerHTML = (isHighlight ? displayText.slice(0,-1) + '<span class="highlight">' + word.text[charIndex] + '</span>' : displayText) + '<span class="cursor"></span>';
+        charIndex++;
+        totalDelay += word.speed || 80;
+        setTimeout(typeWord, word.speed || 80);
+      } else {
+        wordIndex++;
+        charIndex = 0;
+        typeWord();
+      }
+    }
+    
+    setTimeout(typeWord, 500);
+  }
 
   /* ================= INIT ================= */
+  initHeroAnimation();
   updateNavAuthState();
   loadMaterials();
 </script>
