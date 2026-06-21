@@ -45,6 +45,7 @@
     letter-spacing:0.02em;
   }
   a{color:inherit; text-decoration:none;}
+  [data-scroll]{cursor:pointer;}
   img{max-width:100%; display:block;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
   section{position:relative;}
@@ -377,11 +378,11 @@
   <nav>
     <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> CYBER HUB</div>
     <div class="nav-links" id="navLinks">
-      <a href="#services">Services</a>
-      <a href="#why">Why Us</a>
-      <a href="#resources">Resources</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a data-scroll="services">Services</a>
+      <a data-scroll="why">Why Us</a>
+      <a data-scroll="resources">Resources</a>
+      <a data-scroll="about">About</a>
+      <a data-scroll="contact">Contact</a>
     </div>
     <div class="nav-right">
       <div class="status-pill"><span class="blip"></span>HUB ONLINE · NAIROBI</div>
@@ -399,8 +400,8 @@
       <h1 class="hero-title">Technology, security, and everything in between<span class="accent">.</span></h1>
       <p class="lead">Skeng Cyber Hub is where Nairobi comes to get its tech sorted — from locking down a network and training a team in ethical hacking, to fixing a laptop and printing a CV. One hub, every connection.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#services">Explore services</a>
-        <a class="btn btn-ghost" href="#contact">Talk to the hub</a>
+        <a class="btn btn-primary" data-scroll="services">Explore services</a>
+        <a class="btn btn-ghost" data-scroll="contact">Talk to the hub</a>
       </div>
     </div>
 
@@ -624,10 +625,10 @@
     <div class="foot-row">
       <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> CYBER HUB</div>
       <div class="foot-links">
-        <a href="#services">Services</a>
-        <a href="#resources">Resources</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a data-scroll="services">Services</a>
+        <a data-scroll="resources">Resources</a>
+        <a data-scroll="about">About</a>
+        <a data-scroll="contact">Contact</a>
         <a href="mailto:niskeng492@gmail.com">niskeng492@gmail.com</a>
         <a href="tel:+254788211276">0788 211 276</a>
         <span class="admin-link" id="footerAdminLink">🔑 Admin</span>
@@ -1121,12 +1122,25 @@
   document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
   document.getElementById('navLinks').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 
+  /* In-page section links use data-scroll instead of href="#..." so they're
+     plain non-link elements — this avoids the host app treating them as
+     external links to confirm before opening. */
+  document.querySelectorAll('[data-scroll]').forEach(el => {
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    const go = () => {
+      const target = document.getElementById(el.dataset.scroll);
+      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    };
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); }
+    });
+  });
+
   /* ================= INIT ================= */
   updateNavAuthState();
   loadMaterials();
-  if(!storageAvailable){
-    showToast("Previewing without live storage — admin login still works, but saved items need Claude's preview (or a backend) to persist.");
-  }
 </script>
 
 </body>
