@@ -3,1319 +3,568 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skeng Cyber Hub — Nairobi | Technology, Security &amp; Cyber Services</title>
-<meta name="description" content="Skeng Cyber Hub — Nairobi's hub for cybersecurity, ethical hacking, software, networking, repairs, training and cyber café services.">
+<title>NyumbaHub Kenya — Find your nyumba</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-deep:#0A0E16;
-    --bg-surface:#121826;
-    --bg-surface-2:#19222F;
-    --line:#27324233;
-    --line-soft:#27324266;
-    --teal:#2FD9C4;
-    --amber:#F5A623;
-    --ink:#E9ECF1;
-    --ink-soft:#A6AFC0;
-    --paper:#EEF0F4;
-    --paper-ink:#121826;
-    --paper-soft:#5B6577;
-    --radius:14px;
-    --maxw:1180px;
+    --ink:#15130E;
+    --paper:#FAF6EE;
+    --paper-2:#F1E9D8;
+    --green:#0F3D2E;
+    --green-2:#154B39;
+    --clay:#A34A28;
+    --gold:#C9922B;
+    --line: rgba(21,19,14,0.14);
+    --card: #ffffff;
+    --shadow: 0 1px 0 rgba(21,19,14,0.06);
+    --radius: 14px;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
+  [data-theme="dark"]{
+    --ink:#F3EEE1;
+    --paper:#0E1512;
+    --paper-2:#152019;
+    --green:#8FD9B6;
+    --green-2:#6FBE99;
+    --clay:#E38A5C;
+    --gold:#E8B65C;
+    --line: rgba(243,238,225,0.14);
+    --card: #131B17;
+    --shadow: 0 1px 0 rgba(0,0,0,0.3);
+  }
+  *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:'Inter', sans-serif;
-    background:var(--bg-deep);
+    margin:0;
+    background:var(--paper);
     color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    font-family:'Manrope',sans-serif;
+    transition:background .3s ease,color .3s ease;
   }
-  h1,h2,h3, .display{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    letter-spacing:-0.02em;
-    line-height:1.05;
-  }
-  .mono{
-    font-family:'JetBrains Mono', monospace;
-    letter-spacing:0.02em;
-  }
-  a{color:inherit; text-decoration:none;}
-  [data-scroll]{cursor:pointer;}
-  img{max-width:100%; display:block;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; z-index:2;}
-  section{position:relative;}
+  h1,h2,h3,.display{font-family:'Unbounded',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
 
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(10,14,22,0.78);
-    backdrop-filter:blur(10px);
+  /* NAV */
+  nav.top{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
     border-bottom:1px solid var(--line);
+    backdrop-filter:blur(6px);
   }
-  nav{
-    display:flex; align-items:center; justify-content:space-between;
-    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+  .navrow{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:-0.02em;}
+  .logo .badge{
+    width:34px;height:34px;border-radius:8px;background:var(--green);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;font-family:'Unbounded';font-weight:800;font-size:.85rem;
+    transform:rotate(-4deg);
   }
-  .logo{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.05rem;
-  }
-  .logo .dot{
-    width:9px; height:9px; border-radius:50%;
-    background:var(--teal);
-    box-shadow:0 0 0 3px rgba(47,217,196,0.18);
-  }
-  .logo .slash{color:var(--ink-soft); font-weight:400;}
-  .nav-links{display:flex; align-items:center; gap:28px;}
-  .nav-links a{
-    font-size:0.92rem; color:var(--ink-soft); transition:color .2s;
-  }
-  .nav-links a:hover{color:var(--ink);}
-  .nav-right{display:flex; align-items:center; gap:14px;}
-  .status-pill{
-    display:flex; align-items:center; gap:7px;
-    font-size:0.74rem; color:var(--teal);
-    border:1px solid var(--line-soft); border-radius:30px;
-    padding:6px 12px; white-space:nowrap;
-  }
-  .status-pill .blip{
-    width:6px; height:6px; border-radius:50%; background:var(--teal);
-    animation:blip 2s infinite;
-  }
-  @keyframes blip{0%,100%{opacity:1;}50%{opacity:.25;}}
-  .auth-slot{display:flex; align-items:center; gap:10px;}
-  .who{color:var(--ink-soft); font-size:0.85rem; white-space:nowrap;}
-  .nav-toggle{display:none; background:none; border:none; color:var(--ink); font-size:1.5rem; cursor:pointer;}
-
-  /* ---------- BUTTONS ---------- */
+  .navlinks{display:flex;gap:26px;font-weight:600;font-size:.92rem;}
+  .navlinks a{text-decoration:none;opacity:.8;transition:opacity .15s;}
+  .navlinks a:hover{opacity:1;}
+  .navactions{display:flex;align-items:center;gap:10px;}
   .btn{
-    display:inline-flex; align-items:center; gap:8px; cursor:pointer; border:none;
-    padding:13px 24px; border-radius:9px;
-    font-size:0.93rem; font-weight:600; font-family:'Inter', sans-serif;
-    transition:transform .15s, background .2s, color .2s, border-color .2s;
+    border:none;border-radius:100px;padding:10px 18px;font-weight:700;font-size:.88rem;cursor:pointer;
+    font-family:'Manrope';transition:transform .15s ease, opacity .15s ease;
   }
-  .btn-primary{background:var(--teal); color:#06201C;}
-  .btn-primary:hover{transform:translateY(-2px);}
-  .btn-ghost{border:1px solid var(--line-soft); color:var(--ink); background:transparent;}
-  .btn-ghost:hover{border-color:var(--teal); color:var(--teal); transform:translateY(-2px);}
-  .btn.small{padding:9px 16px; font-size:0.83rem;}
-  .btn-icon{
-    background:none; border:1px solid var(--line-soft); color:var(--ink-soft);
-    width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:0.95rem;
+  .btn:active{transform:scale(.96);}
+  .btn-primary{background:var(--clay);color:#fff;}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .theme-toggle{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;
   }
-  .btn-icon:hover{color:var(--teal); border-color:var(--teal);}
+  @media (max-width:820px){.navlinks{display:none;}}
 
-  /* ---------- HERO ---------- */
+  /* HERO — destination board */
   .hero{
-    padding:96px 0 80px;
+    background:linear-gradient(180deg,var(--green) 0%, var(--green-2) 100%);
+    color:#F4EFE0;
+    padding:64px 0 40px;
+    position:relative;
     overflow:hidden;
-    background:
-      radial-gradient(ellipse 70% 60% at 80% 0%, rgba(47,217,196,0.10), transparent 60%),
-      radial-gradient(ellipse 60% 50% at 0% 100%, rgba(245,166,35,0.07), transparent 60%),
-      var(--bg-deep);
-    border-bottom:1px solid var(--line);
   }
-  .hero-grid{
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 26px);
+    pointer-events:none;
   }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:0.76rem; color:var(--teal);
-    border:1px solid var(--line-soft); border-radius:30px;
-    padding:6px 14px; margin-bottom:22px;
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono';font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px;
   }
-  .eyebrow .pipe{color:var(--ink-soft); opacity:.5;}
-  h1.hero-title{
-    font-size:clamp(2.2rem, 4.6vw, 3.4rem);
-    margin-bottom:20px;
-  }
-  h1.hero-title .accent{color:var(--teal);}
-  .hero p.lead{
-    font-size:1.08rem; color:var(--ink-soft); max-width:480px; margin-bottom:32px;
-    line-height:1.6;
-  }
-  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-eyebrow::before{content:"●";animation:blink 1.6s infinite;}
+  @keyframes blink{50%{opacity:.2;}}
+  .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:0 0 14px;max-width:820px;font-weight:800;}
+  .hero p.sub{max-width:560px;opacity:.85;font-size:1.05rem;margin:0 0 34px;}
 
-  /* hub diagram */
-  .hub-wrap{position:relative; aspect-ratio:1/1; max-width:440px; margin:0 auto;}
-  .hub-wrap svg{width:100%; height:100%;}
-  .hub-line{stroke:url(#lineGrad); stroke-width:1.4; fill:none; opacity:0.55;}
-  .hub-pulse{
-    stroke:var(--teal); stroke-width:1.6; fill:none;
-    stroke-dasharray:6 220; stroke-dashoffset:0;
-    animation:travel 3.2s linear infinite;
+  .board{
+    background:#0B2A20;
+    border:2px solid rgba(244,239,224,0.18);
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+    position:relative;
   }
-  .hub-pulse.d2{animation-delay:.5s;}
-  .hub-pulse.d3{animation-delay:1s;}
-  .hub-pulse.d4{animation-delay:1.5s;}
-  .hub-pulse.d5{animation-delay:2s;}
-  .hub-pulse.d6{animation-delay:2.5s;}
-  @keyframes travel{0%{stroke-dashoffset:226;}100%{stroke-dashoffset:0;}}
-  .node-core{fill:var(--bg-surface-2); stroke:var(--teal); stroke-width:1.5;}
-  .node-outer{fill:var(--bg-surface); stroke:var(--line-soft); stroke-width:1.2;}
-  .node-label{
-    font-family:'JetBrains Mono', monospace; font-size:9px; fill:var(--ink-soft);
-    text-anchor:middle;
+  .board-label{
+    font-family:'IBM Plex Mono';font-size:.72rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:12px;display:flex;justify-content:space-between;
   }
-  .node-core-label{
-    font-family:'Space Grotesk', sans-serif; font-size:12px; font-weight:700; fill:var(--ink);
-    text-anchor:middle;
+  .board-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  @media (max-width:900px){.board-grid{grid-template-columns:repeat(2,1fr);}}
+  .board-field label{
+    display:block;font-family:'IBM Plex Mono';font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+    color:rgba(244,239,224,0.55);margin-bottom:6px;
+  }
+  .board-field select, .board-field input{
+    width:100%;background:#0F3A2C;border:1px solid rgba(244,239,224,0.2);border-radius:8px;
+    color:#F4EFE0;padding:11px 10px;font-family:'Manrope';font-weight:700;font-size:.92rem;
+  }
+  .board-field select:focus, .board-field input:focus{outline:2px solid var(--gold);}
+  .board-go{
+    grid-column:span 1;display:flex;align-items:flex-end;
+  }
+  .board-go button{
+    width:100%;background:var(--gold);color:#1B1204;border:none;border-radius:8px;padding:12px;
+    font-weight:800;cursor:pointer;font-size:.92rem;font-family:'Unbounded';
   }
 
-  /* ---------- SECTION HEAD ---------- */
-  .section-head{max-width:560px; margin-bottom:56px;}
-  .section-head .eyebrow{color:var(--amber); border-color:var(--line-soft);}
-  .section-head h2{font-size:clamp(1.7rem, 3vw, 2.3rem); margin-bottom:14px;}
-  .section-head p{color:var(--ink-soft); font-size:1rem; line-height:1.6;}
+  /* marquee */
+  .marquee-wrap{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--paper-2);}
+  .marquee{display:flex;gap:0;white-space:nowrap;animation:scroll 42s linear infinite;width:max-content;}
+  .marquee:hover{animation-play-state:paused;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee span{
+    padding:11px 22px;font-family:'IBM Plex Mono';font-size:.8rem;border-right:1px dashed var(--line);
+    cursor:pointer;
+  }
+  .marquee span:hover{color:var(--clay);}
 
-  /* ---------- SERVICES ---------- */
-  .services{padding:96px 0; background:var(--bg-surface);}
-  .svc-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
-    background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
-  }
-  .svc-card{background:var(--bg-surface); padding:32px 28px; transition:background .2s;}
-  .svc-card:hover{background:var(--bg-surface-2);}
-  .svc-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px;}
-  .svc-port{font-size:0.7rem; color:var(--teal); border:1px solid var(--line-soft); border-radius:5px; padding:3px 8px;}
-  .svc-icon{width:30px; height:30px; color:var(--ink-soft);}
-  .svc-card h3{font-size:1.08rem; margin-bottom:10px;}
-  .svc-card p{font-size:0.9rem; color:var(--ink-soft); line-height:1.55;}
+  section{padding:56px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;gap:20px;flex-wrap:wrap;}
+  .section-head h2{font-size:1.7rem;margin:0 0 6px;}
+  .section-head p{margin:0;opacity:.65;font-size:.95rem;}
+  .eyebrow{font-family:'IBM Plex Mono';font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--clay);margin-bottom:8px;display:block;}
 
-  /* ---------- WHY US (light) ---------- */
-  .why{background:var(--paper); color:var(--paper-ink); padding:96px 0;}
-  .why .section-head p{color:var(--paper-soft);}
-  .why .section-head .eyebrow{color:#0F8F7E; border-color:#0F8F7E33;}
-  .why-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:28px;}
-  .why-card h4{font-size:1rem; margin-bottom:8px;}
-  .why-card p{font-size:0.88rem; color:var(--paper-soft); line-height:1.55;}
-  .why-icon{
-    width:38px; height:38px; border-radius:9px; background:#0F8F7E14; color:#0F8F7E;
-    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  /* filters bar */
+  .filterbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+  .chip{
+    border:1px solid var(--line);background:var(--card);padding:8px 14px;border-radius:100px;font-size:.82rem;
+    font-weight:600;cursor:pointer;transition:all .15s;
   }
-  .why-icon svg{width:19px; height:19px;}
+  .chip.active{background:var(--green);color:var(--paper);border-color:var(--green);}
 
-  /* ---------- RESOURCES / LIBRARY ---------- */
-  .resources{padding:96px 0; background:var(--bg-surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .filter-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;}
-  .filter-btn{
-    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
-    border:1px solid var(--line-soft); border-radius:30px; padding:8px 16px;
-    background:transparent; color:var(--ink-soft); cursor:pointer; transition:all .2s;
-  }
-  .filter-btn:hover{color:var(--ink); border-color:var(--ink-soft);}
-  .filter-btn.active{background:var(--teal); color:#06201C; border-color:var(--teal);}
-  .mat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
-  .mat-card{
-    background:var(--bg-surface-2); border:1px solid var(--line-soft); border-radius:var(--radius);
-    padding:24px; display:flex; flex-direction:column; gap:10px;
-  }
-  .mat-top{display:flex; justify-content:space-between; gap:8px;}
-  .mat-type, .mat-cat{font-size:0.66rem; color:var(--ink-soft); border:1px solid var(--line-soft); border-radius:5px; padding:3px 7px; white-space:nowrap;}
-  .mat-type{color:var(--teal); border-color:rgba(47,217,196,0.3);}
-  .mat-card h4{font-size:1rem;}
-  .mat-card p{font-size:0.87rem; color:var(--ink-soft); line-height:1.5; flex:1;}
-  .empty-note{color:var(--ink-soft); font-size:0.92rem; grid-column:1/-1;}
+  /* listings — ticket stub cards */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:640px){.grid{grid-template-columns:1fr;}}
 
-  /* ---------- ABOUT (light) ---------- */
-  .about{background:var(--paper); color:var(--paper-ink); padding:100px 0;}
-  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
-  .about h2{font-size:clamp(1.6rem,3vw,2.1rem); margin-bottom:18px;}
-  .about p{color:var(--paper-soft); line-height:1.7; margin-bottom:16px; font-size:1rem;}
-  .quote-block{border-left:3px solid var(--amber); padding-left:22px;}
-  .quote-block p.quote{
-    font-family:'Space Grotesk', sans-serif; font-size:1.3rem; font-weight:500;
-    line-height:1.4; color:var(--paper-ink); margin-bottom:14px;
+  .ticket{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;position:relative;
   }
-  .quote-block span{font-size:0.85rem; color:var(--paper-soft);}
+  .ticket:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(15,61,46,0.15);}
+  .ticket .photo{position:relative;height:170px;overflow:hidden;}
+  .ticket .photo img{width:100%;height:100%;object-fit:cover;}
+  .ticket .fav{
+    position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:rgba(21,19,14,0.55);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;border:none;cursor:pointer;
+  }
+  .ticket .price-tag{
+    position:absolute;bottom:0;left:0;background:var(--gold);color:#1B1204;font-family:'IBM Plex Mono';font-weight:700;
+    font-size:.8rem;padding:5px 10px;border-top-right-radius:8px;
+  }
+  .perf{
+    position:relative;height:1px;
+  }
+  .perf::before{
+    content:"";position:absolute;top:-1px;left:0;right:0;height:2px;
+    background-image:radial-gradient(circle,var(--paper) 3px, transparent 3.2px);
+    background-size:14px 4px;background-repeat:repeat-x;
+  }
+  .ticket .body{padding:14px 16px 16px;}
+  .ticket .body h3{font-size:1rem;margin:0 0 4px;font-family:'Manrope';font-weight:800;}
+  .ticket .loc{font-size:.8rem;opacity:.65;margin-bottom:10px;}
+  .ticket .specs{display:flex;gap:12px;font-family:'IBM Plex Mono';font-size:.75rem;opacity:.8;flex-wrap:wrap;}
+  .ticket .tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+  .ticket .tags span{
+    font-size:.68rem;background:var(--paper-2);border-radius:5px;padding:3px 7px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.03em;
+  }
+  .route-badge{
+    position:absolute;top:10px;left:10px;background:var(--green);color:var(--paper);font-family:'IBM Plex Mono';
+    font-size:.68rem;font-weight:700;padding:4px 8px;border-radius:4px;
+  }
 
-  /* ---------- CONTACT ---------- */
-  .contact{
-    background:var(--bg-deep); padding:100px 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 90% 10%, rgba(47,217,196,0.09), transparent 60%),
-      var(--bg-deep);
-    border-top:1px solid var(--line);
-  }
-  .contact .section-head h2{color:var(--ink);}
-  .contact-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; margin-bottom:40px;}
-  .contact-card{background:var(--bg-surface); padding:30px 26px;}
-  .contact-card .label{font-size:0.72rem; color:var(--ink-soft); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.06em;}
-  .contact-card .value{font-size:1.08rem; font-weight:600; color:var(--ink); margin-bottom:6px;}
-  .contact-card .sub{font-size:0.85rem; color:var(--ink-soft);}
-  .contact-card a.value:hover{color:var(--teal);}
-  .contact-foot{
-    display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
-    border:1px solid var(--line-soft); border-radius:var(--radius); padding:26px 30px; background:var(--bg-surface);
-  }
-  .contact-foot p{color:var(--ink-soft); font-size:0.95rem; max-width:420px;}
-  .contact-foot p strong{color:var(--ink);}
+  /* stats */
+  .stats{background:var(--ink);color:var(--paper);}
+  [data-theme="dark"] .stats{background:var(--paper-2);}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media(max-width:700px){.stats .wrap{grid-template-columns:repeat(2,1fr);}}
+  .stat h3{font-size:2.4rem;margin:0;font-family:'Unbounded';color:var(--gold);}
+  .stat p{margin:6px 0 0;font-family:'IBM Plex Mono';font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;opacity:.75;}
 
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--bg-deep); border-top:1px solid var(--line); padding:36px 0;}
-  .foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;}
-  .foot-row .logo{font-size:0.95rem;}
-  .foot-links{display:flex; gap:22px; flex-wrap:wrap;}
-  .foot-links a{font-size:0.85rem; color:var(--ink-soft);}
-  .foot-links a:hover{color:var(--teal);}
-  .foot-links .admin-link{color:var(--amber); cursor:pointer; transition:color .2s; display:inline-flex; align-items:center; gap:6px;}
-  .foot-links .admin-link:hover{color:#FFC966;}
-  .admin-link .padlock{ animation:padlockIdle 4.5s ease-in-out infinite; transform-origin:12px 18px; }
-  @keyframes padlockIdle{0%,85%,100%{ transform:rotate(0); } 90%{ transform:rotate(-6deg); } 95%{ transform:rotate(6deg); }}
-  .admin-link:hover .padlock .shackle{ animation:padlockUnlock .5s ease forwards; }
-  @keyframes padlockUnlock{ to{ transform:translateY(-2px) rotate(-18deg); } }
-  .admin-link .padlock .shackle{ transform-origin:6px 10px; transition:transform .3s ease; }
-  .copyright{font-size:0.78rem; color:var(--ink-soft); margin-top:18px; text-align:center;}
+  /* testimonials */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.tgrid{grid-template-columns:1fr;}}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+  .tcard p.quote{font-size:.92rem;line-height:1.5;margin:0 0 14px;}
+  .tcard .who{display:flex;align-items:center;gap:10px;}
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--paper);display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Unbounded';font-size:.75rem;}
+  .who strong{display:block;font-size:.85rem;}
+  .who span{font-size:.75rem;opacity:.6;}
 
-  /* ---------- MODALS (login + lightbox) ---------- */
-  .modal-overlay{
-    position:fixed; inset:0; background:rgba(6,9,14,0.78); backdrop-filter:blur(4px);
-    display:none; align-items:center; justify-content:center; z-index:200; padding:20px;
+  footer{background:var(--green);color:#EFE8D6;padding:50px 0 24px;}
+  .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:30px;}
+  @media(max-width:800px){.fgrid{grid-template-columns:1fr 1fr;}}
+  footer h4{font-family:'IBM Plex Mono';font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin:0 0 12px;}
+  footer ul{list-style:none;padding:0;margin:0;}
+  footer li{margin-bottom:8px;font-size:.88rem;opacity:.85;}
+  .fbottom{border-top:1px solid rgba(239,232,214,0.2);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.8rem;opacity:.7;}
+  .padlock{display:inline-block;animation:jiggle 3s ease-in-out infinite;}
+  @keyframes jiggle{0%,100%{transform:rotate(0);}50%{transform:rotate(-6deg);}}
+
+  /* modal */
+  .modal-back{
+    position:fixed;inset:0;background:rgba(10,10,8,0.6);display:none;align-items:center;justify-content:center;
+    z-index:100;padding:20px;
   }
-  .modal-overlay.open{display:flex;}
-  .modal-box{
-    background:var(--bg-surface); border:1px solid var(--line-soft); border-radius:var(--radius);
-    padding:34px; max-width:420px; width:100%; position:relative; max-height:88vh; overflow-y:auto;
+  .modal-back.show{display:flex;}
+  .modal{
+    background:var(--paper);border-radius:16px;max-width:620px;width:100%;max-height:88vh;overflow:auto;
+    position:relative;
   }
+  .modal .photo{height:240px;overflow:hidden;}
+  .modal .photo img{width:100%;height:100%;object-fit:cover;}
   .modal-close{
-    position:absolute; top:16px; right:16px; background:none; border:none;
-    color:var(--ink-soft); font-size:1.1rem; cursor:pointer;
+    position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(21,19,14,0.6);
+    color:#fff;border:none;font-size:1.1rem;cursor:pointer;z-index:2;
   }
-  .modal-close:hover{color:var(--ink);}
-  .modal-tabs{display:flex; gap:6px; margin-bottom:24px; border-bottom:1px solid var(--line);}
-  .modal-tab{
-    flex:1; background:none; border:none; color:var(--ink-soft); padding:10px 0;
-    font-size:0.9rem; cursor:pointer; border-bottom:2px solid transparent;
+  .modal .content{padding:22px 24px 26px;}
+  .modal h2{margin:0 0 6px;font-size:1.35rem;}
+  .modal .loc2{opacity:.65;font-size:.88rem;margin-bottom:16px;}
+  .modal .pricebox{
+    display:flex;justify-content:space-between;background:var(--paper-2);border-radius:10px;padding:14px 16px;margin-bottom:18px;
   }
-  .modal-tab.active{color:var(--ink); border-color:var(--teal);}
-  .modal-pane{display:none;}
-  .modal-pane.active{display:block;}
-  .pane-switch{display:flex; gap:8px; margin-bottom:18px;}
-  .switch-btn{
-    flex:1; background:var(--bg-surface-2); border:1px solid var(--line-soft); color:var(--ink-soft);
-    padding:8px 0; border-radius:7px; font-size:0.82rem; cursor:pointer;
-  }
-  .switch-btn.active{color:var(--ink); border-color:var(--teal);}
-  .auth-form{display:flex; flex-direction:column; gap:14px;}
-  .auth-form label{font-size:0.82rem; color:var(--ink-soft); display:flex; flex-direction:column; gap:6px;}
-  .auth-form input, .auth-form select, .auth-form textarea{
-    background:var(--bg-surface-2); border:1px solid var(--line-soft); border-radius:7px;
-    padding:10px 12px; color:var(--ink); font-family:'Inter', sans-serif; font-size:0.92rem;
-  }
-  .auth-form input:focus, .auth-form select:focus, .auth-form textarea:focus{border-color:var(--teal); outline:none;}
-  .auth-error{color:#FF8A8A; font-size:0.82rem; min-height:1.1em;}
-  .auth-note{color:var(--ink-soft); font-size:0.78rem; line-height:1.5;}
-  .radio-inline{flex-direction:row !important; align-items:center; gap:7px !important; font-size:0.85rem;}
-  .source-toggle{display:flex; gap:18px;}
-  .lightbox-box{max-width:640px; text-align:center;}
-  .lightbox-box img{max-width:100%; border-radius:8px; margin-bottom:16px;}
+  .modal .pricebox .amt{font-family:'IBM Plex Mono';font-weight:700;font-size:1.15rem;}
+  .modal .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 20px;margin-bottom:18px;font-size:.88rem;}
+  .modal .grid2 div{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:6px 0;}
+  .modal .amenities{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+  .modal .amenities span{background:var(--paper-2);border-radius:100px;padding:6px 12px;font-size:.78rem;font-weight:600;}
+  .modal .cta-row{display:flex;gap:10px;}
+  .modal .cta-row .btn{flex:1;}
 
-  /* ---------- ADMIN OVERLAY ---------- */
-  .admin-overlay{position:fixed; inset:0; background:var(--bg-deep); z-index:300; display:none; overflow-y:auto;}
-  .admin-overlay.open{display:block;}
-  .admin-box{max-width:760px; margin:0 auto; padding:40px 28px 80px;}
-  .admin-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; gap:14px; flex-wrap:wrap;}
-  .admin-head > div{display:flex; gap:10px;}
-  .admin-tabs{display:flex; gap:8px; margin-bottom:30px; border-bottom:1px solid var(--line); flex-wrap:wrap;}
-  .admin-tab{background:none; border:none; color:var(--ink-soft); padding:10px 18px; font-size:0.9rem; cursor:pointer; border-bottom:2px solid transparent;}
-  .admin-tab.active{color:var(--ink); border-color:var(--amber);}
-  .admin-pane{display:none;}
-  .admin-pane.active{display:block;}
-  .admin-row{
-    display:flex; justify-content:space-between; align-items:center; gap:14px;
-    border:1px solid var(--line-soft); border-radius:9px; padding:14px 16px; margin-bottom:10px;
-  }
-  .admin-row strong{display:block; font-size:0.92rem; margin-bottom:3px;}
-  .admin-row .sub{font-size:0.76rem; color:var(--ink-soft); display:block;}
-
-  .toast{
-    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
-    background:var(--bg-surface-2); border:1px solid var(--teal); color:var(--ink);
-    padding:12px 22px; border-radius:30px; font-size:0.85rem; opacity:0; pointer-events:none;
-    transition:all .3s; z-index:400; max-width:90vw; text-align:center;
-  }
-  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
-
-  /* ---------- BACKGROUND: MATRIX RAIN (hero) ---------- */
-  .matrix-rain{
-    position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-  }
-  .matrix-rain span{
-    position:absolute; top:-8%;
-    font-family:'JetBrains Mono', monospace; color:var(--teal);
-    opacity:0; will-change:transform, opacity;
-    animation-name:bitFall; animation-timing-function:linear; animation-iteration-count:infinite;
-  }
-  @keyframes bitFall{
-    0%{ transform:translateY(0); opacity:0; }
-    8%{ opacity:.22; }
-    88%{ opacity:.14; }
-    100%{ transform:translateY(112vh); opacity:0; }
-  }
-
-  /* ---------- BACKGROUND: DRIFTING CIRCUIT GRID (dark sections) ---------- */
-  .circuit-overlay{
-    position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0.55;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:46px 46px;
-    animation:circuitDrift 30s linear infinite;
-  }
-  @keyframes circuitDrift{
-    0%{ background-position:0 0, 0 0; }
-    100%{ background-position:92px 46px, 46px 92px; }
-  }
-
-  /* ---------- FLOATING CYBER DOODLES ---------- */
-  .cyber-doodles{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
-  .cyber-doodles svg{
-    position:absolute; color:var(--teal); opacity:.1;
-    animation-name:doodleFloat; animation-timing-function:ease-in-out; animation-iteration-count:infinite;
-  }
-  @keyframes doodleFloat{
-    0%,100%{ transform:translateY(0) rotate(0deg); }
-    50%{ transform:translateY(-18px) rotate(7deg); }
-  }
-
-  /* ---------- HUB GUARD MASCOT ---------- */
-  .hub-guard{
-    position:absolute; width:25%; right:-2%; bottom:-3%;
-    filter:drop-shadow(0 8px 16px rgba(0,0,0,0.4));
-    animation:guardBob 3.8s ease-in-out infinite;
-  }
-  @keyframes guardBob{
-    0%,100%{ transform:translateY(0) rotate(-2deg); }
-    50%{ transform:translateY(-7px) rotate(2deg); }
-  }
-  .hub-guard .eye{ animation:guardBlink 4.4s ease-in-out infinite; transform-origin:center; }
-  .hub-guard .eye.r{ animation-delay:.1s; }
-  @keyframes guardBlink{
-    0%,90%,100%{ transform:scaleY(1); }
-    95%{ transform:scaleY(0.12); }
-  }
-  .hub-guard .antenna-light{ animation:guardPing 1.8s ease-in-out infinite; transform-origin:center; }
-  @keyframes guardPing{
-    0%,100%{ opacity:.4; transform:scale(1); }
-    50%{ opacity:1; transform:scale(1.35); }
-  }
-  .hub-bubble{
-    position:absolute; top:-2px; right:6%;
-    font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--teal);
-    background:var(--bg-surface-2); border:1px solid var(--line-soft); border-radius:6px;
-    padding:3px 8px; white-space:nowrap; opacity:0;
-    animation:bubbleCycle 9s ease-in-out infinite;
-  }
-  .hub-bubble.b2{ animation-delay:3s; }
-  .hub-bubble.b3{ animation-delay:6s; }
-  @keyframes bubbleCycle{
-    0%{ opacity:0; transform:translateY(3px); }
-    4%{ opacity:1; transform:translateY(0); }
-    26%{ opacity:1; transform:translateY(0); }
-    32%{ opacity:0; transform:translateY(3px); }
-    100%{ opacity:0; }
-  }
-
-  /* ---------- WHY-US ICONS: LITTLE FACES & TICKS ---------- */
-  .why-icon svg .eye{ transform-origin:center; animation:whyBlink 5s ease-in-out infinite; }
-  @keyframes whyBlink{
-    0%,90%,100%{ transform:scaleY(1); }
-    95%{ transform:scaleY(0.15); }
-  }
-  .why-icon svg .beacon{ animation:whyPing 2.2s ease-in-out infinite; transform-origin:center; }
-  @keyframes whyPing{
-    0%,100%{ opacity:.35; }
-    50%{ opacity:1; }
-  }
-  .why-card:hover .why-icon svg{ animation:whyWiggle .5s ease-in-out; }
-  @keyframes whyWiggle{
-    0%,100%{ transform:rotate(0); }
-    25%{ transform:rotate(-9deg); }
-    75%{ transform:rotate(9deg); }
-  }
-  .why-icon svg .draw-path{
-    stroke-dasharray:30; stroke-dashoffset:30;
-    transition:stroke-dashoffset 1s ease .15s;
-  }
-  .why-card.in .why-icon svg .draw-path{ stroke-dashoffset:0; }
-
-  /* ---------- SCAN SWEEP ON SERVICE CARDS ---------- */
-  .svc-card{ position:relative; overflow:hidden; }
-  .svc-card::after{
-    content:''; position:absolute; top:0; left:-130%; width:55%; height:100%; z-index:0;
-    background:linear-gradient(105deg, transparent, rgba(47,217,196,0.10), transparent);
-    transition:left .65s ease; pointer-events:none;
-  }
-  .svc-card:hover::after{ left:130%; }
-  .svc-card > *{ position:relative; z-index:1; }
-  .svc-icon{ transition:transform .35s ease, color .35s ease; }
-  .svc-card:hover .svc-icon{ transform:translateY(-3px) rotate(-6deg); color:var(--teal); }
-
-  /* ---------- BUG-ZAP ON CYBERSECURITY CARD ---------- */
-  .bug-chase{ position:absolute; top:16px; right:20px; width:30px; height:18px; pointer-events:none; opacity:0; transition:opacity .2s; z-index:2; }
-  .svc-card:hover .bug-chase{ opacity:1; }
-  .bug-chase .bug{ animation:bugScuttle 1.5s ease-in-out infinite; }
-  @keyframes bugScuttle{
-    0%,100%{ transform:translateX(0) rotate(0deg); }
-    50%{ transform:translateX(-9px) rotate(-10deg); }
-  }
-  .bug-chase .zap{ position:absolute; left:-3px; top:-3px; opacity:0; animation:bugZapHit 1.5s ease-in-out infinite; }
-  @keyframes bugZapHit{
-    0%,55%{ opacity:0; transform:scale(.5); }
-    62%{ opacity:1; transform:scale(1.3); }
-    72%,100%{ opacity:0; transform:scale(.5); }
-  }
-
-  /* ---------- HERO LOAD-IN: SECURITY SWEEP ---------- */
-  .hero-sweep{
-    position:absolute; left:0; right:0; top:0; height:3px; z-index:1; pointer-events:none;
-    background:linear-gradient(90deg, transparent, var(--teal), transparent);
-    box-shadow:0 0 14px var(--teal);
-    opacity:0; animation:heroSweep 2.4s ease-out .4s 1;
-  }
-  @keyframes heroSweep{
-    0%{ top:0; opacity:0; }
-    10%{ opacity:.85; }
-    88%{ opacity:.4; }
-    100%{ top:100%; opacity:0; }
-  }
-
-  /* ---------- DOODLES ON LIGHT SECTIONS ---------- */
-  .why .cyber-doodles svg, .about .cyber-doodles svg{ color:#0F8F7E; opacity:.16; }
-
-  /* ---------- MINI TERMINAL (about) ---------- */
-  .mini-terminal{
-    display:flex; width:fit-content; align-items:center; gap:6px; margin-top:18px;
-    background:var(--bg-surface-2); color:var(--teal); border-radius:8px;
-    padding:10px 14px; font-size:0.78rem; box-shadow:0 8px 20px rgba(0,0,0,0.18);
-  }
-  .mini-terminal .out{ color:var(--ink-soft); }
-  .mini-terminal .cursor{ display:inline-block; animation:cursorBlink 1s steps(1) infinite; }
-  @keyframes cursorBlink{ 50%{ opacity:0; } }
-
-  /* ---------- SCROLL REVEAL ---------- */
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-
-
-  @media (max-width:880px){
-    .hero-grid{grid-template-columns:1fr;}
-    .hub-wrap{order:-1; max-width:300px;}
-    .svc-grid{grid-template-columns:repeat(2,1fr);}
-    .why-grid{grid-template-columns:repeat(2,1fr);}
-    .mat-grid{grid-template-columns:repeat(2,1fr);}
-    .about-grid{grid-template-columns:1fr; gap:30px;}
-    .contact-grid{grid-template-columns:1fr;}
-    .nav-links{
-      position:absolute; top:100%; left:0; right:0;
-      background:var(--bg-deep); border-bottom:1px solid var(--line);
-      flex-direction:column; align-items:flex-start; gap:0;
-      max-height:0; overflow:hidden; transition:max-height .25s ease;
-    }
-    .nav-links.open{max-height:320px;}
-    .nav-links a{width:100%; padding:14px 28px; border-bottom:1px solid var(--line);}
-    .nav-toggle{display:block;}
-    .status-pill{display:none;}
-  }
-  @media (max-width:560px){
-    .svc-grid{grid-template-columns:1fr;}
-    .why-grid{grid-template-columns:1fr;}
-    .mat-grid{grid-template-columns:1fr;}
-    .cta-row{flex-direction:column; align-items:stretch;}
-    .contact-foot{flex-direction:column; align-items:flex-start;}
-    .admin-box{padding:24px 18px 60px;}
+  .empty{
+    text-align:center;padding:50px 20px;opacity:.6;font-family:'IBM Plex Mono';font-size:.9rem;
   }
 
   @media (prefers-reduced-motion: reduce){
-    .hub-pulse, .status-pill .blip{animation:none !important;}
-    .matrix-rain span, .circuit-overlay, .cyber-doodles svg,
-    .hub-guard, .hub-guard .eye, .hub-guard .antenna-light, .hub-bubble,
-    .why-icon svg .eye, .why-icon svg .beacon, .why-card:hover .why-icon svg,
-    .bug-chase .bug, .bug-chase .zap, .hero-sweep, .mini-terminal .cursor,
-    .admin-link .padlock, .admin-link:hover .padlock .shackle{ animation:none !important; }
-    .why-icon svg .draw-path{ stroke-dashoffset:0; transition:none; }
-    .reveal{ opacity:1; transform:none; transition:none; }
-    .svc-card::after{ display:none; }
-    html{scroll-behavior:auto;}
+    *{animation:none !important;transition:none !important;}
   }
-
-  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
 </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> CYBER HUB</div>
-    <div class="nav-links" id="navLinks">
-      <a data-scroll="services">Services</a>
-      <a data-scroll="why">Why Us</a>
-      <a data-scroll="resources">Resources</a>
-      <a data-scroll="about">About</a>
-      <a data-scroll="contact">Contact</a>
+<nav class="top">
+  <div class="navrow">
+    <div class="logo"><span class="badge">NH</span> NyumbaHub <span style="color:var(--clay)">.ke</span></div>
+    <div class="navlinks">
+      <a href="#listings">Rent</a>
+      <a href="#counties">Counties</a>
+      <a href="#" onclick="alert('Landlord dashboard is part of the full build — this demo shows the tenant-facing experience.');return false;">List a property</a>
+      <a href="#testimonials">Reviews</a>
     </div>
-    <div class="nav-right">
-      <div class="status-pill"><span class="blip"></span>HUB ONLINE · NAIROBI</div>
-      <div class="auth-slot" id="authSlot"></div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    <div class="navactions">
+      <button class="theme-toggle" id="themeBtn" title="Toggle theme">🌙</button>
+      <button class="btn btn-ghost" onclick="alert('Login flow ships with the full backend build.')">Log in</button>
+      <button class="btn btn-primary" onclick="alert('Sign-up flow ships with the full backend build.')">Sign up</button>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>
 
-<!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="matrix-rain" id="matrixRain" aria-hidden="true"></div>
-  <div class="hero-sweep" aria-hidden="true"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow mono">NAIROBI, KENYA <span class="pipe">|</span> DIGITAL &amp; CYBER SERVICES HUB</div>
-      <h1 class="hero-title">Technology, security, and everything in between<span class="accent">.</span></h1>
-      <p class="lead">Skeng Cyber Hub is where Nairobi comes to get its tech sorted — from locking down a network and training a team in ethical hacking, to fixing a laptop and printing a CV. One hub, every connection.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" data-scroll="services">Explore services</a>
-        <a class="btn btn-ghost" data-scroll="contact">Talk to the hub</a>
-      </div>
-    </div>
-
-    <div class="hub-wrap">
-      <svg viewBox="0 0 400 400" aria-hidden="true">
-        <defs>
-          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#2FD9C4"/>
-            <stop offset="100%" stop-color="#F5A623"/>
-          </linearGradient>
-        </defs>
-        <g>
-          <path class="hub-line" d="M200,200 L200,70"/>
-          <path class="hub-line" d="M200,200 L320,135"/>
-          <path class="hub-line" d="M200,200 L320,265"/>
-          <path class="hub-line" d="M200,200 L200,330"/>
-          <path class="hub-line" d="M200,200 L80,265"/>
-          <path class="hub-line" d="M200,200 L80,135"/>
-        </g>
-        <g>
-          <path class="hub-pulse d1" d="M200,200 L200,70"/>
-          <path class="hub-pulse d2" d="M200,200 L320,135"/>
-          <path class="hub-pulse d3" d="M200,200 L320,265"/>
-          <path class="hub-pulse d4" d="M200,200 L200,330"/>
-          <path class="hub-pulse d5" d="M200,200 L80,265"/>
-          <path class="hub-pulse d6" d="M200,200 L80,135"/>
-        </g>
-        <g>
-          <circle class="node-outer" cx="200" cy="70" r="30"/>
-          <text class="node-label" x="200" y="74">SEC</text>
-          <circle class="node-outer" cx="320" cy="135" r="30"/>
-          <text class="node-label" x="320" y="139">DEV</text>
-          <circle class="node-outer" cx="320" cy="265" r="30"/>
-          <text class="node-label" x="320" y="269">FIX</text>
-          <circle class="node-outer" cx="200" cy="330" r="30"/>
-          <text class="node-label" x="200" y="334">NET</text>
-          <circle class="node-outer" cx="80" cy="265" r="30"/>
-          <text class="node-label" x="80" y="269">EDU</text>
-          <circle class="node-outer" cx="80" cy="135" r="30"/>
-          <text class="node-label" x="80" y="139">CAFE</text>
-        </g>
-        <circle class="node-core" cx="200" cy="200" r="46"/>
-        <text class="node-core-label" x="200" y="197">SKENG</text>
-        <text class="node-label" x="200" y="212">HUB</text>
-      </svg>
-
-      <svg class="hub-guard" viewBox="0 0 100 100" aria-hidden="true">
-        <path d="M50 6 L88 22 V50 C88 76 72 90 50 96 C28 90 12 76 12 50 V22 Z" fill="#19222F" stroke="#2FD9C4" stroke-width="3"/>
-        <circle class="eye l" cx="38" cy="46" r="5" fill="#E9ECF1"/>
-        <circle class="eye r" cx="62" cy="46" r="5" fill="#E9ECF1"/>
-        <path d="M40 64 Q50 73 60 64" stroke="#E9ECF1" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M50 10 L50 18" stroke="#F5A623" stroke-width="2"/>
-        <circle class="antenna-light" cx="50" cy="10" r="2.5" fill="#F5A623"/>
-      </svg>
-      <span class="hub-bubble b1 mono">scanning…</span>
-      <span class="hub-bubble b2 mono">all clear ✓</span>
-      <span class="hub-bubble b3 mono">patch applied</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SERVICES ============ -->
-<section class="services" id="services">
-  <div class="circuit-overlay" aria-hidden="true"></div>
-  <div class="cyber-doodles" aria-hidden="true">
-    <svg viewBox="0 0 24 24" style="top:12%; left:6%; width:34px; animation-duration:7s;" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-    <svg viewBox="0 0 24 24" style="top:62%; left:88%; width:30px; animation-duration:9s; animation-delay:1.2s;" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2L4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-4z"/></svg>
-    <svg viewBox="0 0 24 24" style="top:80%; left:14%; width:26px; animation-duration:8s; animation-delay:.5s;" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 9l-6 3 6 3M15 9l6 3-6 3"/></svg>
-    <svg viewBox="0 0 24 24" style="top:8%; left:92%; width:24px; animation-duration:6.5s; animation-delay:2s;" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="3"/><path d="M8 21c0-3 1.5-5 4-5s4 2 4 5"/><path d="M5 11l2-2M19 11l-2-2"/></svg>
-  </div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow mono">WHAT WE DO</div>
-      <h2>Every node of the hub, covered</h2>
-      <p>Each service runs through its own channel — labelled the way a network engineer would label a port. Pick the one you need, or come in and we'll route you to the right desk.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc-card reveal">
-        <div class="bug-chase" aria-hidden="true">
-          <svg class="bug" viewBox="0 0 24 16" width="22" height="16">
-            <ellipse cx="14" cy="8" rx="5" ry="3.4" fill="#F5A623"/>
-            <circle cx="10.5" cy="6.6" r="1.2" fill="#F5A623"/>
-            <circle cx="10.5" cy="9.4" r="1.2" fill="#F5A623"/>
-            <line x1="14" y1="5" x2="19" y2="3" stroke="#F5A623" stroke-width="1"/>
-            <line x1="14" y1="11" x2="19" y2="13" stroke="#F5A623" stroke-width="1"/>
-            <line x1="10" y1="5" x2="5" y2="2.5" stroke="#F5A623" stroke-width="1"/>
-            <line x1="10" y1="11" x2="5" y2="13.5" stroke="#F5A623" stroke-width="1"/>
-          </svg>
-          <svg class="zap" viewBox="0 0 16 16" width="18" height="18">
-            <path d="M8,1 L9.5,6 L14,6 L10.5,9 L12,15 L8,11 L4,15 L5.5,9 L2,6 L6.5,6 Z" fill="#2FD9C4"/>
-          </svg>
+    <div class="hero-eyebrow">Live · 47 counties · 812 verified listings</div>
+    <h1>Nyumba yako iko wapi? <br>Karibu, let's find it.</h1>
+    <p class="sub">Search rentals in any county, town, or estate in Kenya — from Nairobi bedsitters to Diani beach cottages. Verified landlords, real photos, no agent fees for tenants.</p>
+
+    <div class="board">
+      <div class="board-label"><span>Destination board</span><span>Route: Home → Kenya</span></div>
+      <div class="board-grid">
+        <div class="board-field"><label>County</label>
+          <select id="fCounty"></select>
         </div>
-        <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-          <span class="svc-port mono">PORT 22</span>
+        <div class="board-field"><label>Property type</label>
+          <select id="fType">
+            <option value="">Any type</option>
+          </select>
         </div>
-        <h3>Cybersecurity &amp; Ethical Hacking</h3>
-        <p>Vulnerability assessments, penetration testing, network hardening and security audits — done legally, with a report you can act on.</p>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg>
-          <span class="svc-port mono">PORT 443</span>
+        <div class="board-field"><label>Bedrooms</label>
+          <select id="fBeds">
+            <option value="">Any</option>
+            <option value="0">Bedsitter/Studio</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4+</option>
+          </select>
         </div>
-        <h3>Web &amp; Software Development</h3>
-        <p>Websites, web apps, business systems and mobile-friendly platforms — built clean, hosted properly, handed over with documentation.</p>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
-          <span class="svc-port mono">PORT 80</span>
+        <div class="board-field"><label>Max budget (KES/mo)</label>
+          <input type="number" id="fBudget" placeholder="e.g. 40000">
         </div>
-        <h3>Computer, Laptop &amp; Phone Repair</h3>
-        <p>Hardware faults, software issues, virus clean-up, screen and battery replacements, data recovery — diagnosed honestly, fixed properly.</p>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v4l7 4 7-4V8"/></svg>
-          <span class="svc-port mono">PORT 3389</span>
+        <div class="board-go">
+          <button onclick="applyFilters();document.getElementById('listings').scrollIntoView({behavior:'smooth'});">Search →</button>
         </div>
-        <h3>Networking, CCTV &amp; Smart Security</h3>
-        <p>LAN/Wi-Fi setup, structured cabling, CCTV and access-control installs, remote monitoring for homes, offices and shops.</p>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v16M4 9h16M4 15h16"/></svg>
-          <span class="svc-port mono">PORT 21</span>
-        </div>
-        <h3>IT Training &amp; Certification</h3>
-        <p>Beginner computer packages, ethical hacking &amp; cybersecurity courses, digital skills for job seekers and students.</p>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-top">
-          <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="14" rx="1.5"/><path d="M8 21h8M9 17v4M15 17v4"/></svg>
-          <span class="svc-port mono">PORT 8080</span>
-        </div>
-        <h3>Cyber Café Services</h3>
-        <p>Printing, scanning, photocopying, typesetting, online applications, KRA/eCitizen help, browsing stations — open daily.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ WHY US ============ -->
-<section class="why" id="why">
-  <div class="cyber-doodles" aria-hidden="true">
-    <svg viewBox="0 0 24 24" style="top:10%; left:90%; width:26px; animation-duration:8.5s;" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-    <svg viewBox="0 0 24 24" style="top:72%; left:4%; width:24px; animation-duration:9.5s; animation-delay:1s;" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
-  </div>
+<div class="marquee-wrap" id="counties">
+  <div class="marquee" id="marquee"></div>
+</div>
+
+<section id="listings">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow mono">WHY THE HUB</div>
-      <h2>Built to be the place you call first</h2>
-      <p>Nairobi has a lot of "cyber" shops. Here's what we hold ourselves to.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path class="draw-path" d="M12 2l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-4z" pathLength="30"/>
-          <circle class="eye" cx="12" cy="11" r="1.1" fill="currentColor" stroke="none"/>
-          <path d="M9.5 13.5l1.8 1.8 3.2-3.6" stroke-width="1.4"/>
-        </svg></div>
-        <h4>Ethical, above board</h4>
-        <p>Every security engagement is authorised and documented. We secure systems — we don't break into ones we haven't been hired to test.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <circle class="draw-path" cx="12" cy="12" r="9" pathLength="30"/>
-          <path d="M12 7v5l3 3"/>
-          <circle class="beacon" cx="12" cy="3.4" r="1.1" fill="currentColor" stroke="none"/>
-        </svg></div>
-        <h4>Fast turnaround</h4>
-        <p>Most repairs and quick jobs are same-day. Bigger builds and audits come with a clear timeline before we start.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path class="draw-path" d="M3 12h4l3 8 4-16 3 8h4" pathLength="30"/>
-          <circle class="eye" cx="19" cy="6" r="1.1" fill="currentColor" stroke="none"/>
-        </svg></div>
-        <h4>Plain-language reports</h4>
-        <p>No jargon dump. Every audit, repair or training ends with a clear explanation of what was found and what to do next.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path class="draw-path" d="M5 21V8l7-5 7 5v13M9 21v-6h6v6" pathLength="30"/>
-          <circle class="beacon" cx="12" cy="11" r="1.1" fill="currentColor" stroke="none"/>
-        </svg></div>
-        <h4>Local, walk-in friendly</h4>
-        <p>Based in Nairobi, open to walk-ins for the cyber café and repair side, reachable by call or WhatsApp for everything else.</p>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Featured this week</span>
+        <h2>Homes people are boarding on right now</h2>
+        <p id="resultCount">Showing all listings</p>
       </div>
     </div>
+    <div class="filterbar" id="typeChips"></div>
+    <div class="grid" id="grid"></div>
   </div>
 </section>
 
-<!-- ============ RESOURCES / LEARNING LIBRARY ============ -->
-<section class="resources" id="resources">
-  <div class="circuit-overlay" aria-hidden="true"></div>
-  <div class="cyber-doodles" aria-hidden="true">
-    <svg viewBox="0 0 24 24" style="top:15%; left:90%; width:28px; animation-duration:8s;" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-    <svg viewBox="0 0 24 24" style="top:70%; left:5%; width:24px; animation-duration:9.5s; animation-delay:1.5s;" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
-  </div>
+<section class="stats">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow mono">RESOURCE LIBRARY</div>
-      <h2>Learning materials, guides &amp; downloads</h2>
-      <p>Notes, cheat-sheets, sample reports and reference images from across the hub — open to browse and download. Admins manage what's published.</p>
-    </div>
-
-    <div class="filter-row" id="filterRow">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="Cybersecurity">Cybersecurity</button>
-      <button class="filter-btn" data-filter="Web & Software">Web &amp; Software</button>
-      <button class="filter-btn" data-filter="Repair">Repair</button>
-      <button class="filter-btn" data-filter="Networking">Networking</button>
-      <button class="filter-btn" data-filter="Training">Training</button>
-      <button class="filter-btn" data-filter="Cyber Café">Cyber Café</button>
-    </div>
-
-    <div class="mat-grid" id="materialsGrid">
-      <p class="empty-note">Loading library…</p>
-    </div>
+    <div class="stat"><h3>12,480</h3><p>Houses listed</p></div>
+    <div class="stat"><h3>3,150</h3><p>Verified landlords</p></div>
+    <div class="stat"><h3>41,900</h3><p>Tenants matched</p></div>
+    <div class="stat"><h3>47</h3><p>Counties covered</p></div>
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
-<section class="about" id="about">
-  <div class="cyber-doodles" aria-hidden="true">
-    <svg viewBox="0 0 24 24" style="top:14%; left:6%; width:24px; animation-duration:8s;" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-4z"/></svg>
-    <svg viewBox="0 0 24 24" style="top:68%; left:92%; width:22px; animation-duration:9s; animation-delay:1.3s;" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 9l-6 3 6 3M15 9l6 3-6 3"/></svg>
-  </div>
+<section id="testimonials">
   <div class="wrap">
-    <div class="about-grid">
-      <div class="quote-block reveal">
-        <p class="quote">"A hub isn't one service. It's everywhere your devices, your data and your work connect."</p>
-        <span>— The idea behind Skeng Cyber Hub</span>
-        <div class="mini-terminal mono">$ patch_status --all<span class="cursor">▌</span> <span class="out">all systems clear</span></div>
-      </div>
-      <div class="reveal">
-        <h2>One hub for everything technology, in one part of Nairobi</h2>
-        <p>Skeng Cyber Hub started the way most useful places do — by being the one spot that could actually solve the problem in front of it, whether that meant fixing a laptop, setting up a router, or explaining why a small business kept getting locked out of its own email.</p>
-        <p>That grew into a full hub: cybersecurity and ethical hacking on one side, everyday computer, networking and cyber café services on the other, with training and a resource library running through the middle so the skills don't stay locked inside the shop.</p>
-        <p>If it has a screen, a cable, or a login — bring it in, or call us, and we'll point you to the right desk.</p>
-      </div>
+    <div class="section-head">
+      <div><span class="eyebrow">From the platform</span><h2>What tenants and landlords say</h2></div>
     </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="contact" id="contact">
-  <div class="circuit-overlay" aria-hidden="true"></div>
-  <div class="cyber-doodles" aria-hidden="true">
-    <svg viewBox="0 0 24 24" style="top:10%; left:8%; width:30px; animation-duration:7.5s;" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-    <svg viewBox="0 0 24 24" style="top:66%; left:86%; width:26px; animation-duration:9s; animation-delay:1s;" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2L4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-  </div>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="eyebrow mono">GET IN TOUCH</div>
-      <h2>Open a connection with the hub</h2>
-      <p>Whether it's a five-minute fix or a full security audit, every conversation starts the same simple way — reach out below.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="label mono">EMAIL</div>
-        <a class="value" href="mailto:niskeng492@gmail.com">niskeng492@gmail.com</a>
-        <div class="sub">We reply within one working day</div>
+    <div class="tgrid">
+      <div class="tcard">
+        <p class="quote">"I found a 1-bedroom in Kileleshwa in two days, with a real video walkthrough before I even called the landlord. No more turning up to houses that don't exist."</p>
+        <div class="who"><div class="avatar">WA</div><div><strong>Wanjiru A.</strong><span>Tenant, Nairobi</span></div></div>
       </div>
-      <div class="contact-card">
-        <div class="label mono">PHONE &amp; WHATSAPP</div>
-        <a class="value" href="tel:+254788211276">0788 211 276</a>
-        <div class="sub">Call or message anytime during open hours</div>
+      <div class="tcard">
+        <p class="quote">"As a landlord in Nyali I used to rely on word of mouth. Now my listing gets enquiries from tenants relocating from Nairobi and even from the diaspora."</p>
+        <div class="who"><div class="avatar">OJ</div><div><strong>Otieno J.</strong><span>Landlord, Mombasa</span></div></div>
       </div>
-      <div class="contact-card">
-        <div class="label mono">LOCATION</div>
-        <div class="value">Nairobi, Kenya</div>
-        <div class="sub">Walk-ins welcome for café &amp; repair services</div>
+      <div class="tcard">
+        <p class="quote">"The county and estate filters actually work — I searched student housing near Kenyatta University and got real, priced options in minutes."</p>
+        <div class="who"><div class="avatar">NM</div><div><strong>Naliaka M.</strong><span>Tenant, Kiambu</span></div></div>
       </div>
-    </div>
-    <div class="contact-foot">
-      <p><strong>New here?</strong> Tell us what you're trying to solve — repair, security, training or a project — and we'll match you with the right person at the hub.</p>
-      <a class="btn btn-primary" href="mailto:niskeng492@gmail.com?subject=Enquiry%20from%20website">Email the hub</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="foot-row">
-      <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> CYBER HUB</div>
-      <div class="foot-links">
-        <a data-scroll="services">Services</a>
-        <a data-scroll="resources">Resources</a>
-        <a data-scroll="about">About</a>
-        <a data-scroll="contact">Contact</a>
-        <a href="mailto:niskeng492@gmail.com">niskeng492@gmail.com</a>
-        <a href="tel:+254788211276">0788 211 276</a>
-        <span class="admin-link" id="footerAdminLink">
-          <svg class="padlock" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
-            <path class="shackle" d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <rect x="5.5" y="10" width="13" height="9.5" rx="2" fill="currentColor"/>
-            <circle cx="12" cy="14.3" r="1.3" fill="var(--bg-deep)"/>
-          </svg>
-          Admin
-        </span>
+    <div class="fgrid">
+      <div>
+        <div class="logo" style="color:#EFE8D6;margin-bottom:10px;"><span class="badge" style="background:var(--gold);color:#1B1204;">NH</span> NyumbaHub Kenya</div>
+        <p style="max-width:280px;font-size:.85rem;opacity:.8;">Connecting tenants and landlords across all 47 counties. Built for the Kenyan market.</p>
+        <p style="font-size:.8rem;opacity:.7;margin-top:14px;"><span class="padlock">🔒</span> Secure payments · Verified identities</p>
       </div>
+      <div><h4>Company</h4><ul><li>About us</li><li>Careers</li><li>Blog</li><li>Press</li></ul></div>
+      <div><h4>Support</h4><ul><li>FAQs</li><li>Contact us</li><li>Report a listing</li><li>Trust & safety</li></ul></div>
+      <div><h4>Legal</h4><ul><li>Privacy policy</li><li>Terms of service</li><li>Landlord agreement</li></ul></div>
     </div>
-    <div class="copyright">© 2026 Skeng Cyber Hub, Nairobi. All services performed ethically and within the law.</div>
+    <div class="fbottom">
+      <span>© 2026 NyumbaHub Kenya. All rights reserved.</span>
+      <span>Nairobi, Kenya · hello@nyumbahub.co.ke</span>
+    </div>
   </div>
 </footer>
 
-<!-- ============ ADMIN LOGIN MODAL ============ -->
-<div class="modal-overlay" id="adminLoginModal">
-  <div class="modal-box" style="max-width:380px;">
-    <button class="modal-close" id="closeAdminLoginModal" aria-label="Close">✕</button>
-    <div style="text-align:center; margin-bottom:32px;">
-      <div class="logo" style="justify-content:center; margin-bottom:12px;"><span class="dot"></span>SKENG <span class="slash">//</span> ADMIN</div>
-      <p style="color:var(--ink-soft); font-size:0.85rem;">Management panel — authorized access only.</p>
-    </div>
-    <form id="adminLoginForm" class="auth-form">
-      <label>Username <input type="text" id="adminUsername" required autocomplete="off"></label>
-      <label>Password <input type="password" id="adminPassword" required autocomplete="off"></label>
-      <button class="btn btn-primary" type="submit">Enter panel</button>
-    </form>
-    <p class="auth-error" id="adminError"></p>
-  </div>
-</div>
-
-<!-- ============ IMAGE LIGHTBOX ============ -->
-<div class="modal-overlay" id="lightbox">
-  <div class="modal-box lightbox-box">
-    <button class="modal-close" id="closeLightbox" aria-label="Close">✕</button>
-    <img id="lightboxImg" src="" alt="">
-    <a id="lightboxDownload" class="btn btn-ghost small" download>Download image</a>
-  </div>
-</div>
-
-<!-- ============ TOAST ============ -->
-<div class="toast" id="toast"></div>
-
-<!-- ============ ADMIN PANEL ============ -->
-<div class="admin-overlay" id="adminPanel">
-  <div class="admin-box">
-    <div class="admin-head">
-      <div class="logo"><span class="dot"></span>SKENG <span class="slash">//</span> ADMIN</div>
-      <div>
-        <button class="btn btn-ghost small" id="adminLogoutBtn">Log out</button>
-        <button class="modal-close" id="closeAdminPanel" aria-label="Close" style="position:static;">✕</button>
-      </div>
-    </div>
-    <div class="admin-tabs">
-      <button class="admin-tab active" data-atab="add">Add material</button>
-      <button class="admin-tab" data-atab="library">Library</button>
-    </div>
-
-    <div class="admin-pane active" id="apane-add">
-      <form id="addMaterialForm" class="auth-form">
-        <label>Title <input type="text" id="matTitle" required></label>
-        <label>Category
-          <select id="matCategory">
-            <option>Cybersecurity</option>
-            <option>Web & Software</option>
-            <option>Repair</option>
-            <option>Networking</option>
-            <option>Training</option>
-            <option>Cyber Café</option>
-          </select>
-        </label>
-        <label>Type
-          <select id="matType">
-            <option value="image">Image</option>
-            <option value="pdf">PDF document</option>
-            <option value="material">Learning material (notes, slides, etc.)</option>
-          </select>
-        </label>
-        <label>Description <textarea id="matDesc" rows="3"></textarea></label>
-        <div class="source-toggle">
-          <label class="radio-inline"><input type="radio" name="sourceMode" value="file" checked> Upload a file</label>
-          <label class="radio-inline"><input type="radio" name="sourceMode" value="link"> Paste a link instead</label>
-        </div>
-        <label id="fileFieldWrap">File <input type="file" id="matFile" accept="image/*"></label>
-        <label id="linkFieldWrap" hidden>Link <input type="url" id="matLink" placeholder="https://..."></label>
-        <p class="auth-note">Keep uploaded files under ~4MB. For bigger PDFs, paste a Google Drive/Dropbox link instead.</p>
-        <button class="btn btn-primary" type="submit">Publish to library</button>
-        <p class="auth-error" id="matFormError"></p>
-      </form>
-    </div>
-
-    <div class="admin-pane" id="apane-library">
-      <div id="adminMatList"></div>
-    </div>
-  </div>
+<div class="modal-back" id="modalBack">
+  <div class="modal" id="modalContent"></div>
 </div>
 
 <script>
-  /* ================= STORAGE HELPERS ================= */
-  const storageAvailable = !!(window.storage && window.storage.get);
+const COUNTIES = ["Mombasa","Kwale","Kilifi","Tana River","Lamu","Taita Taveta","Garissa","Wajir","Mandera","Marsabit","Isiolo","Meru","Tharaka Nithi","Embu","Kitui","Machakos","Makueni","Nyandarua","Nyeri","Kirinyaga","Murang'a","Kiambu","Turkana","West Pokot","Samburu","Trans Nzoia","Uasin Gishu","Elgeyo Marakwet","Nandi","Baringo","Laikipia","Nakuru","Narok","Kajiado","Kericho","Bomet","Kakamega","Vihiga","Bungoma","Busia","Siaya","Kisumu","Homa Bay","Migori","Kisii","Nyamira","Nairobi"];
 
-  async function getStorageSafe(key, shared){
-    try{
-      const res = await window.storage.get(key, shared);
-      return res ? res.value : null;
-    }catch(e){ return null; }
-  }
-  async function setStorageSafe(key, value, shared){
-    try{
-      const r = await window.storage.set(key, value, shared);
-      return !!r;
-    }catch(e){ return false; }
-  }
-  async function deleteStorageSafe(key, shared){
-    try{ await window.storage.delete(key, shared); }catch(e){}
-  }
+const TYPES = ["Apartment","Bedsitter","Single Room","Studio","Maisonette","Bungalow","Mansion","Student Housing","Shared Accommodation"];
 
-  /* ================= STATE ================= */
-  let currentAdmin = false;
-  let materialsCache = [];
-  let currentFilter = 'all';
+const LISTINGS = [
+  {id:1,title:"Bright 2BR Apartment",county:"Nairobi",town:"Kileleshwa",estate:"Kileleshwa",type:"Apartment",beds:2,baths:2,rent:55000,deposit:55000,sqft:950,furnished:true,parking:true,wifi:true,water:true,security:true,pets:false,img:"nairobi-apt"},
+  {id:2,title:"Cozy Bedsitter near CBD",county:"Nairobi",town:"South B",estate:"South B",type:"Bedsitter",beds:0,baths:1,rent:12000,deposit:12000,sqft:280,furnished:false,parking:false,wifi:true,water:true,security:true,pets:false,img:"nairobi-bedsitter"},
+  {id:3,title:"Beachside Cottage",county:"Mombasa",town:"Nyali",estate:"Nyali Beach",type:"Bungalow",beds:3,baths:3,rent:85000,deposit:85000,sqft:1800,furnished:true,parking:true,wifi:true,water:true,security:true,pets:true,img:"mombasa-cottage"},
+  {id:4,title:"Modern Studio Loft",county:"Kiambu",town:"Ruaka",estate:"Ruaka",type:"Studio",beds:0,baths:1,rent:18000,deposit:18000,sqft:400,furnished:true,parking:true,wifi:true,water:true,security:true,pets:false,img:"kiambu-studio"},
+  {id:5,title:"Family Maisonette",county:"Uasin Gishu",town:"Eldoret",estate:"Elgon View",type:"Maisonette",beds:4,baths:3,rent:60000,deposit:60000,sqft:2100,furnished:false,parking:true,wifi:true,water:true,security:true,pets:true,img:"eldoret-maisonette"},
+  {id:6,title:"Lakeview Apartment",county:"Kisumu",town:"Milimani",estate:"Milimani",type:"Apartment",beds:2,baths:2,rent:35000,deposit:35000,sqft:850,furnished:false,parking:true,wifi:true,water:true,security:true,pets:false,img:"kisumu-apt"},
+  {id:7,title:"Student Hostel Room",county:"Uasin Gishu",town:"Eldoret",estate:"Near Moi University",type:"Student Housing",beds:1,baths:1,rent:6000,deposit:6000,sqft:180,furnished:true,parking:false,wifi:true,water:true,security:true,pets:false,img:"student-room"},
+  {id:8,title:"Shared 3BR — Room to let",county:"Nairobi",town:"Roysambu",estate:"Roysambu",type:"Shared Accommodation",beds:1,baths:1,rent:9000,deposit:9000,sqft:200,furnished:true,parking:false,wifi:true,water:true,security:true,pets:false,img:"shared-room"},
+  {id:9,title:"Luxury Mansion",county:"Kajiado",town:"Karen",estate:"Karen",type:"Mansion",beds:6,baths:5,rent:350000,deposit:700000,sqft:5200,furnished:true,parking:true,wifi:true,water:true,security:true,pets:true,img:"karen-mansion"},
+  {id:10,title:"Cliffside Bungalow",county:"Kilifi",town:"Watamu",estate:"Watamu Beach",type:"Bungalow",beds:3,baths:2,rent:70000,deposit:70000,sqft:1600,furnished:true,parking:true,wifi:false,water:true,security:true,pets:true,img:"watamu-bungalow"},
+  {id:11,title:"Highlands 1BR Apartment",county:"Nyeri",town:"Nyeri Town",estate:"Kamakwa",type:"Apartment",beds:1,baths:1,rent:15000,deposit:15000,sqft:520,furnished:false,parking:true,wifi:true,water:true,security:true,pets:false,img:"nyeri-apt"},
+  {id:12,title:"Tea Country Cottage",county:"Kericho",town:"Kericho Town",estate:"Tea Estate Rd",type:"Bungalow",beds:2,baths:1,rent:22000,deposit:22000,sqft:750,furnished:false,parking:true,wifi:false,water:true,security:false,pets:true,img:"kericho-cottage"},
+];
 
-  const ADMIN_USER = 'admin';
-  const ADMIN_PASS = 'skeng2026'; // change this before publishing the site live
+let activeType = "";
+let filtered = [...LISTINGS];
 
-  /* ================= UTILITIES ================= */
-  function escapeHtml(str){
-    const d = document.createElement('div');
-    d.textContent = str || '';
-    return d.innerHTML;
-  }
-  function showAuthError(id, msg){
-    const el = document.getElementById(id);
-    if(el) el.textContent = msg;
-  }
-  function showToast(msg){
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(window.__toastTimer);
-    window.__toastTimer = setTimeout(()=>t.classList.remove('show'), 3200);
-  }
-  function readFileAsDataUrl(file){
-    return new Promise((resolve,reject)=>{
-      const reader = new FileReader();
-      reader.onload = ()=>resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
+function seedImg(seed,w=600,h=400){return `https://picsum.photos/seed/${seed}/${w}/${h}`;}
 
-  /* ================= MATERIALS (resource library) ================= */
-  async function loadMaterials(){
-    const raw = await getStorageSafe('materials_catalog', true);
-    materialsCache = raw ? JSON.parse(raw) : [];
-    renderMaterials();
-  }
-  async function saveMaterialsCatalog(){
-    const ok = await setStorageSafe('materials_catalog', JSON.stringify(materialsCache), true);
-    if(!ok) showToast("Could not save — storage isn't available in this environment.");
-    return ok;
-  }
-  async function addMaterial(material, fileDataUrl){
-    const id = 'm_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
-    material.id = id;
-    material.addedAt = new Date().toISOString();
-    materialsCache.unshift(material);
-    await saveMaterialsCatalog();
-    if(fileDataUrl){
-      await setStorageSafe('material_file:'+id, fileDataUrl, true);
+// populate county select
+const countySel = document.getElementById('fCounty');
+countySel.innerHTML = '<option value="">All counties</option>' + COUNTIES.map(c=>`<option value="${c}">${c}</option>`).join('');
+
+// populate type select
+const typeSel = document.getElementById('fType');
+typeSel.innerHTML += TYPES.map(t=>`<option value="${t}">${t}</option>`).join('');
+
+// type chips
+const chipWrap = document.getElementById('typeChips');
+function renderChips(){
+  chipWrap.innerHTML = ['All',...TYPES].map(t=>{
+    const val = t==='All' ? '' : t;
+    const cls = activeType===val ? 'chip active' : 'chip';
+    return `<button class="${cls}" onclick="setType('${val}')">${t}</button>`;
+  }).join('');
+}
+function setType(t){ activeType = t; renderChips(); applyFilters(); }
+
+// marquee — counties as destination board
+const marquee = document.getElementById('marquee');
+const doubled = [...COUNTIES,...COUNTIES];
+marquee.innerHTML = doubled.map(c=>`<span onclick="jumpToCounty('${c}')">${c}</span>`).join('');
+function jumpToCounty(c){
+  countySel.value = c;
+  applyFilters();
+  document.getElementById('listings').scrollIntoView({behavior:'smooth'});
+}
+
+function applyFilters(){
+  const county = countySel.value;
+  const type = typeSel.value || activeType;
+  const beds = document.getElementById('fBeds').value;
+  const budget = parseInt(document.getElementById('fBudget').value) || null;
+
+  filtered = LISTINGS.filter(l=>{
+    if(county && l.county!==county) return false;
+    if(type && l.type!==type) return false;
+    if(beds!=="" && beds!==undefined){
+      if(beds==="4"){ if(l.beds<4) return false; } else if(String(l.beds)!==beds) return false;
     }
-    renderMaterials();
-    renderAdminMaterialsList();
+    if(budget && l.rent>budget) return false;
+    return true;
+  });
+  renderGrid();
+}
+
+function fmtKES(n){ return "KES " + n.toLocaleString(); }
+
+function renderGrid(){
+  const grid = document.getElementById('grid');
+  const count = document.getElementById('resultCount');
+  count.textContent = filtered.length ? `Showing ${filtered.length} of ${LISTINGS.length} listings` : "No listings match — try widening your search";
+  if(!filtered.length){
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1;">🏚️ Nothing on this route yet. Try a different county or raise your budget.</div>`;
+    return;
   }
-  async function deleteMaterial(id){
-    materialsCache = materialsCache.filter(m=>m.id!==id);
-    await saveMaterialsCatalog();
-    await deleteStorageSafe('material_file:'+id, true);
-    renderMaterials();
-    renderAdminMaterialsList();
-  }
-  async function openMaterial(id){
-    const mat = materialsCache.find(m=>m.id===id);
-    if(!mat) return;
-    if(mat.sourceType === 'link'){
-      window.open(mat.externalUrl, '_blank');
-      return;
-    }
-    const dataUrl = await getStorageSafe('material_file:'+id, true);
-    if(!dataUrl){ showToast('Could not load this file right now.'); return; }
-    const filename = mat.fileName || (mat.title.replace(/\s+/g,'_'));
-    if(mat.type === 'image'){
-      document.getElementById('lightboxImg').src = dataUrl;
-      document.getElementById('lightboxImg').alt = mat.title;
-      document.getElementById('lightboxDownload').href = dataUrl;
-      document.getElementById('lightboxDownload').download = filename;
-      document.getElementById('lightbox').classList.add('open');
-    } else {
-      const a = document.createElement('a');
-      a.href = dataUrl;
-      a.download = filename;
-      document.body.appendChild(a); a.click(); a.remove();
-    }
-  }
-  function renderMaterials(){
-    const grid = document.getElementById('materialsGrid');
-    const list = currentFilter==='all' ? materialsCache : materialsCache.filter(m=>m.category===currentFilter);
-    if(list.length===0){
-      grid.innerHTML = '<p class="empty-note">No resources in this category yet — check back soon.</p>';
-      return;
-    }
-    grid.innerHTML = list.map(m => `
-      <div class="mat-card">
-        <div class="mat-top">
-          <span class="mat-type mono">${escapeHtml(m.type.toUpperCase())}</span>
-          <span class="mat-cat mono">${escapeHtml(m.category)}</span>
+  grid.innerHTML = filtered.map(l=>`
+    <div class="ticket" onclick="openModal(${l.id})">
+      <div class="photo">
+        <img src="${seedImg(l.img)}" alt="${l.title}" loading="lazy">
+        <div class="route-badge">${l.county.slice(0,3).toUpperCase()}-${String(l.id).padStart(3,'0')}</div>
+        <button class="fav" onclick="event.stopPropagation();toggleFav(this)">♡</button>
+        <div class="price-tag">${fmtKES(l.rent)}/mo</div>
+      </div>
+      <div class="perf"></div>
+      <div class="body">
+        <h3>${l.title}</h3>
+        <div class="loc">${l.estate}, ${l.town} · ${l.county} County</div>
+        <div class="specs">
+          <span>🛏 ${l.beds===0?'Studio':l.beds}</span>
+          <span>🛁 ${l.baths}</span>
+          <span>📐 ${l.sqft} sqft</span>
         </div>
-        <h4>${escapeHtml(m.title)}</h4>
-        <p>${escapeHtml(m.description)}</p>
-        <button class="btn btn-ghost small" data-id="${m.id}">${m.type==='image' ? 'View image' : 'Open / download'}</button>
+        <div class="tags">
+          <span>${l.type}</span>
+          ${l.furnished?'<span>Furnished</span>':''}
+          ${l.wifi?'<span>Wi-Fi</span>':''}
+          ${l.parking?'<span>Parking</span>':''}
+        </div>
       </div>
-    `).join('');
-    grid.querySelectorAll('button[data-id]').forEach(b=>b.addEventListener('click', ()=>openMaterial(b.dataset.id)));
-  }
+    </div>
+  `).join('');
+}
 
-  /* ================= ADMIN: materials manager ================= */
-  function renderAdminMaterialsList(){
-    const wrap = document.getElementById('adminMatList');
-    if(materialsCache.length===0){ wrap.innerHTML='<p class="empty-note">Nothing published yet.</p>'; return; }
-    wrap.innerHTML = materialsCache.map(m => `
-      <div class="admin-row">
-        <div><strong>${escapeHtml(m.title)}</strong><span class="sub mono">${escapeHtml(m.type.toUpperCase())} · ${escapeHtml(m.category)}</span></div>
-        <button data-del="${m.id}" class="btn-icon" aria-label="Delete">✕</button>
+function toggleFav(btn){
+  const active = btn.textContent==='♥';
+  btn.textContent = active ? '♡' : '♥';
+  btn.style.color = active ? '#fff' : '#E0455A';
+}
+
+function openModal(id){
+  const l = LISTINGS.find(x=>x.id===id);
+  const back = document.getElementById('modalBack');
+  const box = document.getElementById('modalContent');
+  box.innerHTML = `
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="photo"><img src="${seedImg(l.img,900,500)}" alt="${l.title}"></div>
+    <div class="content">
+      <h2>${l.title}</h2>
+      <div class="loc2">${l.estate}, ${l.town} · ${l.county} County, Kenya</div>
+      <div class="pricebox">
+        <div><div style="font-size:.72rem;opacity:.6;text-transform:uppercase;">Monthly rent</div><div class="amt">${fmtKES(l.rent)}</div></div>
+        <div><div style="font-size:.72rem;opacity:.6;text-transform:uppercase;">Deposit</div><div class="amt">${fmtKES(l.deposit)}</div></div>
       </div>
-    `).join('');
-    wrap.querySelectorAll('button[data-del]').forEach(b=>b.addEventListener('click', ()=>{
-      if(confirm('Remove this from the library?')) deleteMaterial(b.dataset.del);
-    }));
-  }
+      <div class="grid2">
+        <div><span>Property type</span><strong>${l.type}</strong></div>
+        <div><span>Bedrooms</span><strong>${l.beds===0?'Studio':l.beds}</strong></div>
+        <div><span>Bathrooms</span><strong>${l.baths}</strong></div>
+        <div><span>Size</span><strong>${l.sqft} sqft</strong></div>
+        <div><span>Furnished</span><strong>${l.furnished?'Yes':'No'}</strong></div>
+        <div><span>Pets allowed</span><strong>${l.pets?'Yes':'No'}</strong></div>
+      </div>
+      <div class="amenities">
+        ${l.parking?'<span>🚗 Parking</span>':''}
+        ${l.wifi?'<span>📶 Wi-Fi</span>':''}
+        ${l.water?'<span>🚿 Reliable water</span>':''}
+        ${l.security?'<span>🛡 Security</span>':''}
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="alert('This connects to real-time chat and viewing scheduling in the full build.')">Contact landlord</button>
+        <button class="btn btn-ghost" onclick="alert('Viewing scheduler ships with the full build.')">Schedule viewing</button>
+      </div>
+    </div>
+  `;
+  back.classList.add('show');
+}
+function closeModal(){ document.getElementById('modalBack').classList.remove('show'); }
+document.getElementById('modalBack').addEventListener('click',e=>{ if(e.target.id==='modalBack') closeModal(); });
 
-  /* ================= AUTH: admin ================= */
-  function adminLogin(username, password){
-    if(username===ADMIN_USER && password===ADMIN_PASS){
-      currentAdmin = true;
-      closeAdminLoginModal();
-      updateNavAuthState();
-      openAdminPanel();
-    } else {
-      showAuthError('adminError','Incorrect admin username or password.');
-    }
-  }
-  function logout(){
-    currentAdmin = false;
-    closeAdminPanel();
-    updateNavAuthState();
-    showToast('Logged out.');
-  }
+// theme toggle (in-memory only)
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click',()=>{
+  const isDark = document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme', isDark?'light':'dark');
+  themeBtn.textContent = isDark ? '🌙' : '☀️';
+});
 
-  /* ================= NAV AUTH SLOT ================= */
-  function updateNavAuthState(){
-    const slot = document.getElementById('authSlot');
-    if(currentAdmin){
-      slot.innerHTML = `<button class="btn btn-ghost small" id="openAdminBtn">Admin panel</button><button class="btn-icon" id="navLogoutBtn" title="Log out">⏻</button>`;
-    } else {
-      slot.innerHTML = '';
-    }
-    const openAdminBtn = document.getElementById('openAdminBtn');
-    if(openAdminBtn) openAdminBtn.addEventListener('click', openAdminPanel);
-    const navLogoutBtn = document.getElementById('navLogoutBtn');
-    if(navLogoutBtn) navLogoutBtn.addEventListener('click', logout);
-  }
+// listeners
+countySel.addEventListener('change',applyFilters);
+typeSel.addEventListener('change',applyFilters);
+document.getElementById('fBeds').addEventListener('change',applyFilters);
+document.getElementById('fBudget').addEventListener('input',applyFilters);
 
-  /* Wire up footer admin link */
-  document.getElementById('footerAdminLink').addEventListener('click', openAdminLoginModal);
-
-  /* ================= MODAL CONTROLS ================= */
-  function openAdminLoginModal(){
-    document.getElementById('adminLoginModal').classList.add('open');
-    document.getElementById('adminUsername').focus();
-  }
-  function closeAdminLoginModal(){
-    document.getElementById('adminLoginModal').classList.remove('open');
-    showAuthError('adminError','');
-    document.getElementById('adminLoginForm').reset();
-  }
-  function openAdminPanel(){
-    document.getElementById('adminPanel').classList.add('open');
-    switchAdminTab('add');
-  }
-  function closeAdminPanel(){
-    document.getElementById('adminPanel').classList.remove('open');
-  }
-  function switchAdminTab(tab){
-    document.querySelectorAll('.admin-tab').forEach(b=>b.classList.toggle('active', b.dataset.atab===tab));
-    document.querySelectorAll('.admin-pane').forEach(p=>p.classList.remove('active'));
-    document.getElementById('apane-'+tab).classList.add('active');
-    if(tab==='library') renderAdminMaterialsList();
-  }
-
-  /* ================= EVENT WIRING ================= */
-  document.getElementById('closeAdminLoginModal').addEventListener('click', closeAdminLoginModal);
-  document.getElementById('adminLoginModal').addEventListener('click', (e)=>{ if(e.target.id==='adminLoginModal') closeAdminLoginModal(); });
-
-  document.getElementById('adminLoginForm').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    adminLogin(document.getElementById('adminUsername').value, document.getElementById('adminPassword').value);
-  });
-
-  document.getElementById('closeLightbox').addEventListener('click', ()=>document.getElementById('lightbox').classList.remove('open'));
-  document.getElementById('lightbox').addEventListener('click', (e)=>{ if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('open'); });
-
-  document.getElementById('closeAdminPanel').addEventListener('click', closeAdminPanel);
-  document.getElementById('adminLogoutBtn').addEventListener('click', logout);
-  document.querySelectorAll('.admin-tab').forEach(b=>b.addEventListener('click', ()=>switchAdminTab(b.dataset.atab)));
-
-  document.querySelectorAll('input[name="sourceMode"]').forEach(r=>r.addEventListener('change', ()=>{
-    const isFile = document.querySelector('input[name="sourceMode"]:checked').value === 'file';
-    document.getElementById('fileFieldWrap').hidden = !isFile;
-    document.getElementById('linkFieldWrap').hidden = isFile;
-  }));
-  document.getElementById('matType').addEventListener('change', (e)=>{
-    const accept = e.target.value==='image' ? 'image/*' : (e.target.value==='pdf' ? '.pdf' : '.pdf,.doc,.docx,.ppt,.pptx,.zip,.txt');
-    document.getElementById('matFile').setAttribute('accept', accept);
-  });
-
-  document.getElementById('addMaterialForm').addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const submitBtn = e.target.querySelector('button[type=submit]');
-    const title = document.getElementById('matTitle').value.trim();
-    const category = document.getElementById('matCategory').value;
-    const type = document.getElementById('matType').value;
-    const description = document.getElementById('matDesc').value.trim();
-    const sourceMode = document.querySelector('input[name="sourceMode"]:checked').value;
-    showAuthError('matFormError','');
-    if(!title){ showAuthError('matFormError','Please add a title.'); return; }
-
-    submitBtn.disabled = true; submitBtn.textContent = 'Publishing…';
-    try{
-      const material = {title, category, type, description, sourceType: sourceMode};
-      let fileDataUrl = null;
-      if(sourceMode === 'file'){
-        const file = document.getElementById('matFile').files[0];
-        if(!file){ showAuthError('matFormError','Please choose a file to upload.'); submitBtn.disabled=false; submitBtn.textContent='Publish to library'; return; }
-        if(file.size > 4*1024*1024){
-          showAuthError('matFormError','That file is a bit large (keep under ~4MB) — try compressing it or paste a link instead.');
-          submitBtn.disabled=false; submitBtn.textContent='Publish to library';
-          return;
-        }
-        fileDataUrl = await readFileAsDataUrl(file);
-        material.fileName = file.name;
-      } else {
-        const url = document.getElementById('matLink').value.trim();
-        if(!url){ showAuthError('matFormError','Please paste a link.'); submitBtn.disabled=false; submitBtn.textContent='Publish to library'; return; }
-        material.externalUrl = url;
-      }
-      await addMaterial(material, fileDataUrl);
-      e.target.reset();
-      document.getElementById('fileFieldWrap').hidden = false;
-      document.getElementById('linkFieldWrap').hidden = true;
-      showToast('Published to the library.');
-    }catch(err){
-      showAuthError('matFormError','Something went wrong publishing this — please try again.');
-    }
-    submitBtn.disabled = false; submitBtn.textContent = 'Publish to library';
-  });
-
-  document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click', ()=>{
-    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    currentFilter = b.dataset.filter;
-    renderMaterials();
-  }));
-
-  /* ================= AMBIENT BACKGROUND: MATRIX RAIN ================= */
-  function generateMatrixRain(){
-    const container = document.getElementById('matrixRain');
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!container || reduceMotion) return;
-    const cols = 16;
-    for(let i=0;i<cols;i++){
-      const span = document.createElement('span');
-      let text = '';
-      const rows = 30;
-      for(let j=0;j<rows;j++){ text += (Math.random()>0.5?'1':'0') + '\n'; }
-      span.textContent = text;
-      const left = (i/cols)*100 + (Math.random()*3 - 1.5);
-      const duration = 7 + Math.random()*10;
-      const delay = -Math.random()*duration;
-      const size = 10 + Math.random()*3;
-      span.style.left = left + '%';
-      span.style.fontSize = size + 'px';
-      span.style.lineHeight = '1.5';
-      span.style.whiteSpace = 'pre';
-      span.style.animationDuration = duration + 's';
-      span.style.animationDelay = delay + 's';
-      container.appendChild(span);
-    }
-  }
-
-  /* ================= SCROLL REVEAL ================= */
-  function setupScrollReveal(){
-    const targets = document.querySelectorAll('.reveal, .why-card');
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduceMotion || !('IntersectionObserver' in window)){
-      targets.forEach(t=>t.classList.add('in'));
-      return;
-    }
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {threshold:0.2, rootMargin:'0px 0px -40px 0px'});
-    targets.forEach(t=>observer.observe(t));
-  }
-
-  document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-  document.getElementById('navLinks').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
-
-  /* In-page section links use data-scroll instead of href="#..." so they're
-     plain non-link elements — this avoids the host app treating them as
-     external links to confirm before opening. */
-  document.querySelectorAll('[data-scroll]').forEach(el => {
-    el.setAttribute('role', 'button');
-    el.setAttribute('tabindex', '0');
-    const go = () => {
-      const target = document.getElementById(el.dataset.scroll);
-      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-    };
-    el.addEventListener('click', go);
-    el.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); }
-    });
-  });
-
-  /* ================= INIT ================= */
-  updateNavAuthState();
-  loadMaterials();
-  generateMatrixRain();
-  setupScrollReveal();
+renderChips();
+renderGrid();
 </script>
 
 </body>
